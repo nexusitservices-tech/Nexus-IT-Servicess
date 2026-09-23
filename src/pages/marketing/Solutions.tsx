@@ -121,10 +121,10 @@ export default function Solutions() {
         { label: 'Rights', val: '100% Perpetual' }
       ],
       highlights: [
+        '4 Official Packages: Starter, Growth, Professional & Full Enterprise Management',
+        'Multi-platform management (Instagram, Facebook, TikTok), reels & ad funnels',
         'Cinema-grade 4K commercials shot on RED & ARRI cameras in Dubai',
-        'Photorealistic 3D CGI product renders & architectural visualizations',
-        'Bilingual Arabic & English corporate identity & design guidelines',
-        'High-converting multi-aspect social media video campaign packages'
+        'Photorealistic 3D CGI product renders & architectural visualizations'
       ]
     },
     {

@@ -18,6 +18,17 @@ async function startServer() {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
+  // Explicit SEO sitemap & robots delivery
+  app.get("/sitemap.xml", (req, res) => {
+    res.setHeader("Content-Type", "application/xml; charset=utf-8");
+    res.sendFile(path.join(process.cwd(), "public", "sitemap.xml"));
+  });
+
+  app.get("/robots.txt", (req, res) => {
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.sendFile(path.join(process.cwd(), "public", "robots.txt"));
+  });
+
   // Auth mock
   app.post("/api/auth/login", (req, res) => {
     const { email, password } = req.body;

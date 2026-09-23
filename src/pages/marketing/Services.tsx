@@ -193,9 +193,10 @@ export default function Services() {
       configOptions: {
         name: "Creative Package Scope",
         options: [
-          { label: "Corporate Identity & Digital Assets Suite", aedDelta: 0 },
-          { label: "Includes On-Site 4K Corporate Brand Video Shoot", aedDelta: 12000 },
-          { label: "Full Year Creative Retainer & Ongoing Content Lab", aedDelta: 24000 }
+          { label: "Package 1: Starter / Basic (2 platforms, 8–12 posts/mo)", aedDelta: 0 },
+          { label: "Package 2: Growth / Standard (3 platforms, 15–20 posts/mo, reels)", aedDelta: 3500 },
+          { label: "Package 3: Professional / Premium (4–5 platforms, 25–30 posts, ads)", aedDelta: 8500 },
+          { label: "Package 4: Enterprise / Full Management (All platforms, full production)", aedDelta: 16000 }
         ]
       }
     },

@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Server, Code, Bot, Palette, Briefcase, CheckCircle2, ArrowRight, 
   ShieldCheck, Clock, Award, Cpu, Zap, Activity, Globe,
-  MessageSquare, FileCode, Check, ChevronRight, Sparkles, Building2
+  MessageSquare, FileCode, Check, ChevronRight, Sparkles, Building2, Users, Layers
 } from 'lucide-react';
 import { MorphBlock, MorphStagger } from '@/components/ui/MorphBlock';
 import { Typewriter } from '@/components/ui/Typewriter';
 import ITServicesPage from './ITServicesPage';
 import SoftwareDevelopmentPage from './SoftwareDevelopmentPage';
+
+interface OfficialPackage {
+  number: string;
+  name: string;
+  bestFor: string;
+  tagline?: string;
+  badge?: string;
+  isPopular?: boolean;
+  features: string[];
+}
 
 interface SolutionData {
   slug: string;
@@ -24,6 +34,7 @@ interface SolutionData {
   heroImage: string;
   telemetry: { label: string; value: string; detail: string }[];
   keyCapabilities: { title: string; desc: string }[];
+  officialPackages?: OfficialPackage[];
   architecturePoints: string[];
   dubaiAdvantage: string;
   technologies: string[];
@@ -146,6 +157,77 @@ const SOLUTIONS_DATA: Record<string, SolutionData> = {
       { title: '3D CGI Product Renders & Animations', desc: 'Photorealistic architectural fly-throughs, luxury product explosion views, and interactive WebGL assets.' },
       { title: 'Complete Brand Identity & Typography', desc: 'Bilingual logos, typography guidelines, iconography kits, and executive stationery suites.' },
       { title: 'Performance Ad Campaign Suites', desc: 'High-converting social video creatives formatted for Instagram, TikTok, LinkedIn, and programmatic displays.' }
+    ],
+    officialPackages: [
+      {
+        number: 'Package 1',
+        name: 'Starter / Basic',
+        bestFor: 'Small businesses, startups',
+        tagline: 'Ideal for emerging ventures seeking professional credibility and steady brand momentum.',
+        badge: 'Startups & Emerging Brands',
+        isPopular: false,
+        features: [
+          '2 social media platforms (e.g., Instagram + Facebook).',
+          '8–12 posts per month.',
+          'Basic graphic design (static images).',
+          'Caption writing + hashtags.',
+          'Monthly performance report.',
+          '1 revision per post.'
+        ]
+      },
+      {
+        number: 'Package 2',
+        name: 'Growth / Standard',
+        bestFor: 'Medium businesses',
+        tagline: 'Engineered for scaling enterprises seeking multi-platform video reach and active audience management.',
+        badge: 'Most Popular for Growth',
+        isPopular: true,
+        features: [
+          '3 platforms (e.g., Instagram, Facebook, TikTok).',
+          '15–20 posts per month.',
+          'Graphics + basic video/reels (2–4/month).',
+          'Caption writing + hashtags + call-to-action.',
+          'Community management (reply to comments/DMs).',
+          'Bi-weekly performance report.',
+          'Competitor analysis (monthly).'
+        ]
+      },
+      {
+        number: 'Package 3',
+        name: 'Professional / Premium',
+        bestFor: 'Established brands',
+        tagline: 'High-cadence editorial dominance with rapid reels, regular stories, and boosted ad campaigns.',
+        badge: 'High Performance & Scale',
+        isPopular: false,
+        features: [
+          '4–5 platforms.',
+          '25–30 posts per month.',
+          'Graphics + videos/reels (6–8/month).',
+          'Stories (daily or every 2 days).',
+          'Full community management.',
+          'Paid ads management (boosting posts).',
+          'Weekly reports + strategy calls.',
+          'Content calendar.'
+        ]
+      },
+      {
+        number: 'Package 4',
+        name: 'Enterprise / Full Management',
+        bestFor: 'Large companies',
+        tagline: 'Full agency production firepower with unlimited publishing, paid ad funnels, influencer outreach, and dedicated management.',
+        badge: 'Turnkey Enterprise Suite',
+        isPopular: false,
+        features: [
+          'All platforms.',
+          'Unlimited posts.',
+          'Full content production (photos, videos, reels, stories).',
+          'Paid ads (Facebook Ads, Instagram Ads, TikTok Ads).',
+          'Influencer outreach.',
+          'Monthly strategy meeting.',
+          'Dedicated account manager.',
+          'Full analytics dashboard.'
+        ]
+      }
     ],
     architecturePoints: [
       'Licensed UAE drone flight clearance with Dubai Civil Aviation Authority (DCAA)',
@@ -293,6 +375,18 @@ export default function SolutionDetail() {
 
   const solution = canonicalSlug ? SOLUTIONS_DATA[canonicalSlug] : null;
 
+  useEffect(() => {
+    if (window.location.hash === '#official-packages') {
+      const timer = setTimeout(() => {
+        const el = document.getElementById('official-packages');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [canonicalSlug]);
+
   if (!solution) {
     return <Navigate to="/solutions" replace />;
   }
@@ -341,6 +435,14 @@ export default function SolutionDetail() {
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </Link>
+                {solution.officialPackages && (
+                  <a href="#official-packages">
+                    <button className="px-5 py-3.5 rounded-full bg-blue-50 hover:bg-blue-100 text-[#0046AF] font-bold border border-blue-200 text-sm transition-all flex items-center gap-2 cursor-pointer shadow-xs">
+                      <Layers className="w-4 h-4 text-[#0046AF]" />
+                      <span>View 4 Official Packages</span>
+                    </button>
+                  </a>
+                )}
                 <div className="flex items-center gap-2 px-4 py-3 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700">
                   <Clock className="w-4 h-4 text-[#0046AF]" />
                   <span>{solution.sla}</span>
@@ -410,6 +512,152 @@ export default function SolutionDetail() {
           ))}
         </div>
       </section>
+
+      {/* Official Packages (Rendered if defined, e.g. for Creative Media & Business Adverts) */}
+      {solution.officialPackages && solution.officialPackages.length > 0 && (
+        <section id="official-packages" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-200 scroll-mt-20">
+          <MorphBlock className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold mb-3 shadow-xs">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Official Media &amp; Management Plans</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 tracking-tight">
+              Official Social Media, 3D &amp; Creative Management Packages
+            </h2>
+            <p className="text-base text-slate-600 leading-relaxed">
+              Transparent, scalable multi-platform publishing and creative management packages designed to elevate your brand presence, accelerate reach, and drive commercial growth across Dubai and the GCC.
+            </p>
+          </MorphBlock>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+            {solution.officialPackages.map((pkg, idx) => (
+              <MorphBlock key={idx} delay={0.08 * idx} enableHover className="h-full">
+                <div 
+                  className={`relative rounded-3xl p-6 sm:p-7 flex flex-col justify-between h-full transition-all duration-300 ${
+                    pkg.isPopular 
+                      ? 'bg-gradient-to-b from-[#091E42] via-[#0B1E3F] to-slate-950 text-white shadow-xl shadow-blue-950/25 border-2 border-blue-400/90 -translate-y-1' 
+                      : 'bg-white text-slate-900 border border-slate-200/90 shadow-sm hover:shadow-md hover:border-blue-300'
+                  }`}
+                >
+                  {/* Top Header Badge */}
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <span className={`text-xs font-mono font-bold tracking-wider uppercase px-2.5 py-1 rounded-md ${
+                        pkg.isPopular 
+                          ? 'bg-blue-500/30 text-blue-200 border border-blue-400/40' 
+                          : 'bg-slate-100 text-slate-600 border border-slate-200'
+                      }`}>
+                        {pkg.number}
+                      </span>
+                      {pkg.isPopular ? (
+                        <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 shadow-xs">
+                          <Sparkles className="w-3 h-3 fill-slate-950" />
+                          <span>Popular</span>
+                        </span>
+                      ) : (
+                        <span className="text-[11px] font-medium text-slate-400">
+                          Official Tier
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Package Name */}
+                    <h3 className={`text-xl font-black mb-2 tracking-tight ${
+                      pkg.isPopular ? 'text-white' : 'text-slate-900'
+                    }`}>
+                      {pkg.name}
+                    </h3>
+
+                    {/* Best For Highlight */}
+                    <div className={`p-3 rounded-xl text-xs font-medium mb-4 flex items-start gap-2.5 ${
+                      pkg.isPopular 
+                        ? 'bg-white/10 text-blue-100 border border-white/10' 
+                        : 'bg-slate-50 text-slate-700 border border-slate-200/70'
+                    }`}>
+                      <Users className={`w-4 h-4 shrink-0 mt-0.5 ${pkg.isPopular ? 'text-blue-300' : 'text-blue-600'}`} />
+                      <div>
+                        <span className="text-[10px] uppercase font-bold tracking-wider block opacity-75">Best for</span>
+                        <strong className="font-semibold text-xs leading-tight block mt-0.5">{pkg.bestFor}</strong>
+                      </div>
+                    </div>
+
+                    {/* Tagline / Subtitle */}
+                    {pkg.tagline && (
+                      <p className={`text-xs leading-relaxed mb-5 ${
+                        pkg.isPopular ? 'text-blue-200/90' : 'text-slate-500'
+                      }`}>
+                        {pkg.tagline}
+                      </p>
+                    )}
+
+                    {/* Included Features List */}
+                    <div className={`space-y-3 pt-4 pb-6 border-t ${
+                      pkg.isPopular ? 'border-white/10' : 'border-slate-100'
+                    }`}>
+                      <div className={`text-[11px] uppercase tracking-wider font-bold ${
+                        pkg.isPopular ? 'text-blue-300' : 'text-slate-500'
+                      }`}>
+                        Included Deliverables:
+                      </div>
+                      <ul className="space-y-2.5">
+                        {pkg.features.map((feature, fIdx) => (
+                          <li key={fIdx} className="flex items-start gap-2 text-xs leading-relaxed">
+                            <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${
+                              pkg.isPopular ? 'text-blue-400' : 'text-blue-600'
+                            }`} />
+                            <span className={pkg.isPopular ? 'text-slate-200 font-medium' : 'text-slate-700'}>
+                              {feature}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Bottom Action CTA */}
+                  <div className={`pt-4 border-t mt-auto ${
+                    pkg.isPopular ? 'border-white/10' : 'border-slate-100'
+                  }`}>
+                    <Link 
+                      to={`/contact?service=creative-services&package=${encodeURIComponent(pkg.number + ' — ' + pkg.name)}`}
+                      className="block w-full"
+                    >
+                      <button 
+                        className={`w-full py-3 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                          pkg.isPopular
+                            ? 'bg-white hover:bg-blue-50 text-blue-950 shadow-md hover:shadow-lg'
+                            : 'bg-blue-50 hover:bg-[#0046AF] text-blue-700 hover:text-white border border-blue-200/80 hover:border-transparent'
+                        }`}
+                      >
+                        <span>Get Started with {pkg.number}</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </MorphBlock>
+            ))}
+          </div>
+
+          {/* Bottom Enterprise Custom Addons Note */}
+          <div className="mt-12 p-6 rounded-2xl bg-white border border-slate-200/90 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 text-blue-600">
+                <Layers className="w-5 h-5 text-[#0046AF]" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-slate-900">Need Custom 3D CGI, Cinema Drone Permits or Bespoke Commercial Production?</h4>
+                <p className="text-xs text-slate-500">All packages can be customized with on-location RED Cinema shoots across Dubai, multilingual Emirati voiceovers, and interactive WebGL 3D assets.</p>
+              </div>
+            </div>
+            <Link to="/contact?service=creative-services&type=custom-scope" className="shrink-0">
+              <button className="bg-slate-900 hover:bg-black text-white text-xs font-semibold px-5 py-2.5 rounded-xl transition-all cursor-pointer">
+                Request Custom Scope
+              </button>
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* Technology Stack & Deliverables */}
       <section className="py-20 bg-white border-b border-slate-200">
