@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Textarea } from '@/components/ui/Textarea';
 import { 
   Mail, Phone, MapPin, Loader2, CheckCircle2, 
-  MessageSquare, Clock, ShieldCheck, Building, Calendar, ArrowRight 
+  MessageSquare, Clock, ShieldCheck, Building, Calendar, ArrowRight,
+  Navigation, Copy, Check, ExternalLink, Maximize2, Minimize2, Car, Train, Sparkles
 } from 'lucide-react';
 import { Typewriter } from '@/components/ui/Typewriter';
 import { MorphBlock } from '@/components/ui/MorphBlock';
@@ -15,6 +16,8 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [ticketId, setTicketId] = useState<string>('');
+  const [copiedAddress, setCopiedAddress] = useState(false);
+  const [mapExpanded, setMapExpanded] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -26,6 +29,14 @@ export default function Contact() {
     meetingPref: 'In-Person at our Dubai Office',
     message: ''
   });
+
+  const handleCopyAddress = () => {
+    navigator.clipboard.writeText(
+      "Nexus IT Services, Level 14, Boulevard Plaza Tower 1, Sheikh Mohammed Bin Rashid Blvd, Downtown Dubai, United Arab Emirates"
+    );
+    setCopiedAddress(true);
+    setTimeout(() => setCopiedAddress(false), 2400);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -88,19 +99,131 @@ export default function Contact() {
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-4 sm:mb-6">Direct UAE Contact Channels</h3>
               
               <div className="space-y-4 sm:space-y-6">
-                {/* Office Location */}
-                <div className="flex items-start gap-3.5 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-                  <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0">
-                    <MapPin className="w-5 sm:w-6 h-5 sm:h-6" />
+                {/* Office Location & Interactive Google Map */}
+                <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs space-y-3.5">
+                  {/* Card Header */}
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#0046AF] shrink-0 mt-0.5">
+                        <MapPin className="w-5 h-5 text-[#0046AF]" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h4 className="text-slate-900 font-bold text-sm">Dubai Headquarters &amp; Tech Hub</h4>
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            Open Today
+                          </span>
+                        </div>
+                        <p className="text-slate-600 text-xs leading-relaxed mt-0.5">
+                          Level 14, Boulevard Plaza Tower 1<br />
+                          Sheikh Mohammed Bin Rashid Blvd, Downtown Dubai, UAE
+                        </p>
+                        <p className="text-[11px] text-blue-600 font-medium mt-0.5">Secondary Hub: Dubai Internet City (DIC)</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-slate-900 font-bold text-sm mb-1">Dubai Headquarters</h4>
-                    <p className="text-slate-600 text-xs leading-relaxed">
-                      Level 14, Boulevard Plaza Tower 1<br />
-                      Sheikh Mohammed Bin Rashid Blvd, Downtown Dubai<br />
-                      Dubai, United Arab Emirates
-                    </p>
-                    <p className="text-[11px] text-blue-600 font-medium mt-1">Secondary Hub: Dubai Internet City (DIC)</p>
+
+                  {/* Sleek Embedded HTML Google Map (Compact, Responsive, Fitted) */}
+                  <div className={`relative rounded-xl overflow-hidden border border-slate-200/90 shadow-inner bg-slate-100 transition-all duration-300 ${
+                    mapExpanded ? 'h-72 sm:h-80' : 'h-44 sm:h-48'
+                  }`}>
+                    <iframe 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.2426262544336!2d55.312678576196944!3d25.262422377669054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d07b5472b05%3A0xc151cdcb4c09549c!2sNexus%20IT%20Services!5e0!3m2!1sen!2sae!4v1790169261594!5m2!1sen!2sae" 
+                      width="100%" 
+                      height="100%" 
+                      style={{ border: 0 }} 
+                      allowFullScreen 
+                      loading="lazy" 
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      title="Nexus IT Services Dubai Office Map Location"
+                      className="w-full h-full object-cover"
+                    />
+
+                    {/* Floating Top-Left Verification Chip */}
+                    <div className="absolute top-2.5 left-2.5 z-10 pointer-events-none">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-white text-[10px] sm:text-[11px] font-bold shadow-xs border border-slate-700/70">
+                        <MapPin className="w-3 h-3 text-blue-400" />
+                        <span>Nexus IT Services • Dubai</span>
+                      </span>
+                    </div>
+
+                    {/* Floating Top-Right Controls: Expand + Direct Google Maps Link */}
+                    <div className="absolute top-2.5 right-2.5 z-10 flex items-center gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => setMapExpanded(!mapExpanded)}
+                        title={mapExpanded ? "Collapse map" : "Expand map view"}
+                        className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white/90 hover:bg-white backdrop-blur-md text-slate-700 hover:text-slate-950 text-xs shadow-xs border border-slate-200 transition-all cursor-pointer"
+                      >
+                        {mapExpanded ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                      </button>
+
+                      <a
+                        href="https://maps.google.com/?q=Nexus+IT+Services+Dubai"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 hover:bg-white backdrop-blur-md text-blue-700 hover:text-blue-900 text-[10px] sm:text-[11px] font-bold shadow-xs border border-slate-200 transition-all cursor-pointer"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        <span>Open Maps</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Transit & Arrival Highlights */}
+                  <div className="grid grid-cols-3 gap-2 pt-1">
+                    <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 text-center">
+                      <Car className="w-3.5 h-3.5 text-[#0046AF] mx-auto mb-1" />
+                      <span className="text-[10px] font-semibold text-slate-700 block leading-tight">Valet Parking</span>
+                      <span className="text-[9px] text-slate-400">On-site visitor</span>
+                    </div>
+                    <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 text-center">
+                      <Train className="w-3.5 h-3.5 text-[#0046AF] mx-auto mb-1" />
+                      <span className="text-[10px] font-semibold text-slate-700 block leading-tight">Dubai Metro</span>
+                      <span className="text-[9px] text-slate-400">Red Line nearby</span>
+                    </div>
+                    <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 text-center">
+                      <Clock className="w-3.5 h-3.5 text-[#0046AF] mx-auto mb-1" />
+                      <span className="text-[10px] font-semibold text-slate-700 block leading-tight">9 AM – 6 PM</span>
+                      <span className="text-[9px] text-slate-400">Mon – Fri GST</span>
+                    </div>
+                  </div>
+
+                  {/* Direct Action Bar */}
+                  <div className="pt-2 border-t border-slate-100 flex items-center gap-2">
+                    <a
+                      href="https://maps.google.com/?q=Nexus+IT+Services+Dubai"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1"
+                    >
+                      <button
+                        type="button"
+                        className="w-full bg-[#0046AF] hover:bg-[#00388C] text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
+                      >
+                        <Navigation className="w-3.5 h-3.5" />
+                        <span>Get Directions</span>
+                      </button>
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={handleCopyAddress}
+                      className="flex-1 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-semibold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                    >
+                      {copiedAddress ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-600" />
+                          <span className="text-emerald-700 font-bold">Address Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5 text-slate-500" />
+                          <span>Copy Address</span>
+                        </>
+                      )}
+                    </button>
                   </div>
                 </div>
 

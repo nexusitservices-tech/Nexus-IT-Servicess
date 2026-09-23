@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Clock, Building, Phone, Calendar, ArrowRight, MessageSquare, ShieldCheck, Check } from 'lucide-react';
+import { MapPin, Clock, Building, Phone, Calendar, ArrowRight, MessageSquare, ShieldCheck, Check, ExternalLink, Navigation, Image as ImageIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function DubaiOfficeLocation() {
   const [gstTime, setGstTime] = useState<string>('');
+  const [activeTab, setActiveTab] = useState<'map' | 'photo'>('map');
 
   useEffect(() => {
     const updateTime = () => {
@@ -32,31 +33,69 @@ export default function DubaiOfficeLocation() {
         <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-md overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
             
-            {/* Left Col: High-Res Dubai HQ Photography with Interactive Overlays (6 Cols) */}
-            <div className="lg:col-span-6 relative min-h-[280px] sm:min-h-[380px] lg:min-h-full overflow-hidden bg-slate-900 group">
-              <img
-                src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85"
-                alt="Downtown Dubai Boulevard Plaza Nexus IT Services HQ"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter contrast-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+            {/* Left Col: High-Res Dubai HQ Photography / Google Map Embed with Interactive Overlays (6 Cols) */}
+            <div className="lg:col-span-6 relative min-h-[340px] sm:min-h-[420px] lg:min-h-full overflow-hidden bg-slate-950 group flex flex-col justify-between">
               
-              {/* Floating Top Badge */}
-              <div className="absolute top-3 sm:top-5 left-3 sm:left-5 right-3 sm:right-5 flex items-center justify-between text-white">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-md text-[11px] sm:text-xs font-semibold border border-slate-700/80">
+              {activeTab === 'photo' ? (
+                <>
+                  <img
+                    src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85"
+                    alt="Downtown Dubai Boulevard Plaza Nexus IT Services HQ"
+                    referrerPolicy="no-referrer"
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter contrast-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                </>
+              ) : (
+                <div className="absolute inset-0 w-full h-full bg-slate-900">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.2426262544336!2d55.312678576196944!3d25.262422377669054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d07b5472b05%3A0xc151cdcb4c09549c!2sNexus%20IT%20Services!5e0!3m2!1sen!2sae!4v1790169261594!5m2!1sen!2sae" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    allowFullScreen 
+                    loading="lazy" 
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    title="Nexus IT Services Dubai Office Map"
+                    className="w-full h-full object-cover filter contrast-[1.02]"
+                  />
+                </div>
+              )}
+              
+              {/* Floating Top Badge with View Mode Switcher */}
+              <div className="relative z-10 p-3 sm:p-5 flex items-center justify-between text-white gap-2 flex-wrap">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-md text-[11px] sm:text-xs font-semibold border border-slate-700/80 shadow-xs">
                   <span className="text-sm">🇦🇪</span>
                   <span>Downtown Dubai • UAE HQ</span>
                 </span>
 
-                <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-950/85 backdrop-blur-md text-blue-300 text-xs font-mono border border-blue-800/80">
-                  <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
-                  <span>Office Open Today</span>
-                </span>
+                {/* Switcher tabs */}
+                <div className="flex items-center bg-slate-900/90 backdrop-blur-md p-1 rounded-full border border-slate-700/80 shadow-xs">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('map')}
+                    className={`px-3 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                      activeTab === 'map' ? 'bg-[#0046AF] text-white shadow-xs' : 'text-slate-300 hover:text-white'
+                    }`}
+                  >
+                    <MapPin className="w-3 h-3" />
+                    <span>Live Map</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('photo')}
+                    className={`px-3 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                      activeTab === 'photo' ? 'bg-[#0046AF] text-white shadow-xs' : 'text-slate-300 hover:text-white'
+                    }`}
+                  >
+                    <ImageIcon className="w-3 h-3" />
+                    <span>Photo</span>
+                  </button>
+                </div>
               </div>
 
-              {/* Bottom Card on Image: Real-Time GST Clock & Coordinates */}
-              <div className="absolute bottom-3 sm:bottom-5 left-3 sm:left-5 right-3 sm:right-5 bg-slate-900/90 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3">
+              {/* Bottom Card on Left Col: Real-Time GST Clock & Coordinates */}
+              <div className="relative z-10 m-3 sm:m-5 bg-slate-900/90 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3">
                 <div>
                   <span className="text-[10px] uppercase font-mono tracking-widest text-slate-400 block">
                     CURRENT TIME IN DUBAI (GST • GMT+4)
@@ -69,9 +108,9 @@ export default function DubaiOfficeLocation() {
 
                 <div className="text-left sm:text-right text-xs text-slate-300">
                   <span className="text-[10px] uppercase font-mono tracking-widest text-slate-400 block">
-                    LOCATION COORDINATES
+                    VERIFIED LOCATION
                   </span>
-                  <span className="font-mono text-blue-300 text-[11px] sm:text-xs">25.2048° N, 55.2708° E</span>
+                  <span className="font-mono text-blue-300 text-[11px] sm:text-xs">25.2624° N, 55.3127° E</span>
                 </div>
               </div>
 
