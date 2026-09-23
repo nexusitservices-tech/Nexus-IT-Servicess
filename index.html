@@ -1,77 +1,222 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     
-    <!--
-      ASSET SPECIFICATION - FAVICON & APP ICONS
-      - Format: .svg (preferred for modern browsers), .png (fallback), or .ico
-      - Size: 32x32px or 64x64px (square) for favicon.
-      - Apple Touch Icon: 180x180px .png
-      - Note: Use a highly legible, simplified mark (symbol only, no text) with good contrast for dark/light browser tabs.
-    -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <title>Nexus IT Services | Enterprise IT, Cloud & AI Solutions in Dubai, UAE</title>
-    <meta name="description" content="Enterprise IT services, custom software, cloud & AI automation in Dubai & UAE. Simplify operations and scale faster with Nexus Tech. Book a free consultation!" />
-    <meta name="keywords" content="IT services Dubai, UAE tech company, enterprise IT infrastructure, custom software development UAE, AI automation GCC, cloud solutions Dubai, cybersecurity UAE, Nexus IT Services" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <!-- Title & Primary Meta Tags -->
+    <title>Nexus IT Services | Enterprise IT, Cloud &amp; AI Solutions in Dubai, UAE</title>
+    <meta name="title" content="Nexus IT Services | Enterprise IT, Cloud &amp; AI Solutions in Dubai, UAE" />
+    <meta name="description" content="Enterprise IT services, custom software, cloud &amp; AI automation in Dubai &amp; UAE. Simplify operations and scale faster with Nexus Tech. Book a free consultation!" />
+    <meta name="keywords" content="IT services Dubai, UAE tech company, enterprise IT infrastructure, custom software development UAE, AI automation GCC, cloud solutions Dubai, cybersecurity UAE, DevOps Dubai, managed IT services UAE, Nexus IT Services" />
     <meta name="author" content="Nexus IT Services" />
-    <meta name="theme-color" content="#0B1528" />
+    <meta name="publisher" content="Nexus IT Services" />
+    
+    <!-- Crawling & Indexing for Google, Bing, Yahoo, Yandex, Baidu, DuckDuckGo -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="slurp" content="index, follow" />
+    <meta name="baiduspider" content="index, follow" />
+    <meta name="yandex" content="index, follow" />
+    
+    <!-- Canonical & Alternate URLs -->
+    <link rel="canonical" href="https://nexusitservices.ae/" />
+    <link rel="alternate" hreflang="en-ae" href="https://nexusitservices.ae/" />
+    <link rel="alternate" hreflang="en" href="https://nexusitservices.ae/" />
+    <link rel="alternate" hreflang="x-default" href="https://nexusitservices.ae/" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
-    <!-- Open Graph / Facebook / LinkedIn -->
+    <!-- Favicon & Brand Icons (SVG + PNG multi-resolution suite matching logo.png) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/favicon.svg" color="#0B1528" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Mobile, Windows & Browser Theming -->
+    <meta name="theme-color" content="#0B1528" />
+    <meta name="msapplication-TileColor" content="#0B1528" />
+    <meta name="msapplication-TileImage" content="/favicon.png" />
+    <meta name="application-name" content="Nexus IT Services" />
+    <meta name="apple-mobile-web-app-title" content="Nexus IT" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Geo & Local SEO for Dubai, UAE & GCC -->
+    <meta name="geo.region" content="AE-DU" />
+    <meta name="geo.placename" content="Dubai" />
+    <meta name="geo.position" content="25.2048;55.2708" />
+    <meta name="ICBM" content="25.2048, 55.2708" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Nexus IT Services" />
-    <meta property="og:title" content="Nexus IT Services | Enterprise IT, Cloud & AI Solutions in Dubai" />
-    <meta property="og:description" content="Enterprise IT services, custom software, cloud & AI automation in Dubai & UAE. Simplify operations and scale faster with Nexus Tech. Book a free consultation!" />
+    <meta property="og:url" content="https://nexusitservices.ae/" />
+    <meta property="og:title" content="Nexus IT Services | Enterprise IT, Cloud &amp; AI Solutions in Dubai" />
+    <meta property="og:description" content="Enterprise IT services, custom software, cloud &amp; AI automation in Dubai &amp; UAE. Simplify operations and scale faster with Nexus Tech. Book a free consultation!" />
     <meta property="og:image" content="/logo.png" />
+    <meta property="og:image:secure_url" content="/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="Nexus IT Services Brand Logo" />
     <meta property="og:locale" content="en_AE" />
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Nexus IT Services | Enterprise IT, Cloud & AI Solutions in Dubai" />
-    <meta name="twitter:description" content="Enterprise IT services, custom software, cloud & AI automation in Dubai & UAE. Simplify operations and scale faster with Nexus Tech. Book a free consultation!" />
+    <meta name="twitter:site" content="@NexusITServices" />
+    <meta name="twitter:creator" content="@NexusITServices" />
+    <meta name="twitter:url" content="https://nexusitservices.ae/" />
+    <meta name="twitter:title" content="Nexus IT Services | Enterprise IT, Cloud &amp; AI Solutions in Dubai" />
+    <meta name="twitter:description" content="Enterprise IT services, custom software, cloud &amp; AI automation in Dubai &amp; UAE. Simplify operations and scale faster with Nexus Tech. Book a free consultation!" />
     <meta name="twitter:image" content="/logo.png" />
+    <meta name="twitter:image:alt" content="Nexus IT Services Brand Logo" />
 
     <!-- Structured Data (JSON-LD) for Search Engines (Google, Bing, Yahoo, Yandex) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Nexus IT Services",
-      "image": "/logo.png",
-      "description": "Enterprise IT services, custom software development, cloud infrastructure, and AI automation for businesses across Dubai, Abu Dhabi, and the GCC.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Dubai",
-        "addressRegion": "Dubai",
-        "addressCountry": "AE"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 25.2048,
-        "longitude": 55.2708
-      },
-      "areaServed": [
+      "@graph": [
         {
-          "@type": "Country",
-          "name": "United Arab Emirates"
+          "@type": "Organization",
+          "@id": "https://nexusitservices.ae/#organization",
+          "name": "Nexus IT Services",
+          "url": "https://nexusitservices.ae/",
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://nexusitservices.ae/#logo",
+            "url": "https://nexusitservices.ae/logo.png",
+            "caption": "Nexus IT Services",
+            "width": 512,
+            "height": 512
+          },
+          "image": "https://nexusitservices.ae/logo.png",
+          "description": "Enterprise IT services, custom software development, cloud infrastructure, cybersecurity, and AI automation for businesses across Dubai, Abu Dhabi, and the GCC.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Sheikh Zayed Road, Business Bay",
+            "addressLocality": "Dubai",
+            "addressRegion": "Dubai",
+            "postalCode": "00000",
+            "addressCountry": "AE"
+          },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+971-4-800-NEXUS",
+              "contactType": "customer service",
+              "areaServed": ["AE", "SA", "QA", "OM", "KW", "BH"],
+              "availableLanguage": ["English", "Arabic"]
+            }
+          ],
+          "sameAs": [
+            "https://linkedin.com/company/nexusitservices",
+            "https://twitter.com/NexusITServices",
+            "https://github.com/nexusitservices"
+          ]
         },
         {
-          "@type": "Country",
-          "name": "Saudi Arabia"
+          "@type": "WebSite",
+          "@id": "https://nexusitservices.ae/#website",
+          "url": "https://nexusitservices.ae/",
+          "name": "Nexus IT Services",
+          "description": "Enterprise IT, Cloud &amp; AI Solutions in Dubai, UAE",
+          "publisher": {
+            "@id": "https://nexusitservices.ae/#organization"
+          },
+          "inLanguage": "en-AE",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://nexusitservices.ae/services?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://nexusitservices.ae/#service",
+          "name": "Nexus IT Services",
+          "url": "https://nexusitservices.ae/",
+          "parentOrganization": {
+            "@id": "https://nexusitservices.ae/#organization"
+          },
+          "image": "https://nexusitservices.ae/logo.png",
+          "priceRange": "$$",
+          "telephone": "+971-4-800-NEXUS",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dubai",
+            "addressRegion": "Dubai",
+            "addressCountry": "AE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 25.2048,
+            "longitude": 55.2708
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "08:00",
+              "closes": "18:00"
+            }
+          ],
+          "areaServed": [
+            { "@type": "Country", "name": "United Arab Emirates" },
+            { "@type": "Country", "name": "Saudi Arabia" },
+            { "@type": "Country", "name": "Qatar" }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Enterprise Technology Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Managed IT Infrastructure &amp; Support"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Custom Software &amp; Web Application Development"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Enterprise Cloud Architecture &amp; DevOps"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "AI Automation &amp; Intelligent Agents"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Cybersecurity &amp; Regulatory Compliance"
+                }
+              }
+            ]
+          }
         }
-      ],
-      "knowsAbout": [
-        "IT Infrastructure",
-        "Cloud Solutions",
-        "Custom Software Engineering",
-        "AI Automation",
-        "Cybersecurity",
-        "Business IT Consulting"
-      ],
-      "priceRange": "$$"
+      ]
     }
     </script>
   </head>
