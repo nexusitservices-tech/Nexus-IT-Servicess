@@ -3,37 +3,41 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useEffect, lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import MarketingLayout from '@/layouts/MarketingLayout';
 import Home from '@/pages/marketing/Home';
-import About from '@/pages/marketing/About';
-import Services from '@/pages/marketing/Services';
-import Solutions from '@/pages/marketing/Solutions';
-import SolutionDetail from '@/pages/marketing/SolutionDetail';
-import Contact from '@/pages/marketing/Contact';
-import Portal from '@/pages/marketing/Portal';
-import Privacy from '@/pages/marketing/Privacy';
-import Terms from '@/pages/marketing/Terms';
-import CaseStudies from '@/pages/marketing/CaseStudies';
-import Careers from '@/pages/marketing/Careers';
-import FAQ from '@/pages/marketing/FAQ';
-import Estimator from '@/pages/marketing/Estimator';
-import ITServicesPage from '@/pages/marketing/ITServicesPage';
-import SoftwareDevelopmentPage from '@/pages/marketing/SoftwareDevelopmentPage';
 
-import AuthLayout from '@/layouts/AuthLayout';
-import Login from '@/pages/auth/Login';
+// Lazy-load secondary marketing pages for rapid mobile load speed
+const About = lazy(() => import('@/pages/marketing/About'));
+const Services = lazy(() => import('@/pages/marketing/Services'));
+const Solutions = lazy(() => import('@/pages/marketing/Solutions'));
+const SolutionDetail = lazy(() => import('@/pages/marketing/SolutionDetail'));
+const Contact = lazy(() => import('@/pages/marketing/Contact'));
+const Portal = lazy(() => import('@/pages/marketing/Portal'));
+const Privacy = lazy(() => import('@/pages/marketing/Privacy'));
+const Terms = lazy(() => import('@/pages/marketing/Terms'));
+const CaseStudies = lazy(() => import('@/pages/marketing/CaseStudies'));
+const Careers = lazy(() => import('@/pages/marketing/Careers'));
+const FAQ = lazy(() => import('@/pages/marketing/FAQ'));
+const Estimator = lazy(() => import('@/pages/marketing/Estimator'));
+const ITServicesPage = lazy(() => import('@/pages/marketing/ITServicesPage'));
+const SoftwareDevelopmentPage = lazy(() => import('@/pages/marketing/SoftwareDevelopmentPage'));
 
-import AppLayout from '@/layouts/AppLayout';
-import Dashboard from '@/pages/app/Dashboard';
-import CRM from '@/pages/app/CRM';
-import Tickets from '@/pages/app/Tickets';
-import Finance from '@/pages/app/Finance';
-import Projects from '@/pages/app/Projects';
-import Documents from '@/pages/app/Documents';
-import AI from '@/pages/app/AI';
-import Settings from '@/pages/app/Settings';
+// Lazy-load Auth Layout & Pages
+const AuthLayout = lazy(() => import('@/layouts/AuthLayout'));
+const Login = lazy(() => import('@/pages/auth/Login'));
+
+// Lazy-load App/Dashboard Layout & Admin Modules
+const AppLayout = lazy(() => import('@/layouts/AppLayout'));
+const Dashboard = lazy(() => import('@/pages/app/Dashboard'));
+const CRM = lazy(() => import('@/pages/app/CRM'));
+const Tickets = lazy(() => import('@/pages/app/Tickets'));
+const Finance = lazy(() => import('@/pages/app/Finance'));
+const Projects = lazy(() => import('@/pages/app/Projects'));
+const Documents = lazy(() => import('@/pages/app/Documents'));
+const AI = lazy(() => import('@/pages/app/AI'));
+const Settings = lazy(() => import('@/pages/app/Settings'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -45,50 +49,60 @@ function ScrollToTop() {
   return null;
 }
 
+function PageSuspenseFallback() {
+  return (
+    <div className="min-h-[50vh] w-full flex items-center justify-center">
+      <div className="w-7 h-7 border-2 border-slate-200 border-t-[#0046AF] rounded-full animate-spin" />
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Routes>
-        {/* Marketing Site */}
-        <Route path="/" element={<MarketingLayout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="services" element={<Services />} />
-          <Route path="services/:slug" element={<SolutionDetail />} />
-          <Route path="solutions" element={<Solutions />} />
-          <Route path="solutions/:slug" element={<SolutionDetail />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="portal" element={<Portal />} />
-          <Route path="admin" element={<Portal />} />
-          <Route path="privacy" element={<Privacy />} />
-          <Route path="terms" element={<Terms />} />
-          <Route path="case-studies" element={<CaseStudies />} />
-          <Route path="portfolio" element={<CaseStudies />} />
-          <Route path="careers" element={<Careers />} />
-          <Route path="faq" element={<FAQ />} />
-          <Route path="estimator" element={<Estimator />} />
-          <Route path="it-services" element={<ITServicesPage />} />
-          <Route path="software-development" element={<SoftwareDevelopmentPage />} />
-        </Route>
+      <Suspense fallback={<PageSuspenseFallback />}>
+        <Routes>
+          {/* Marketing Site */}
+          <Route path="/" element={<MarketingLayout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="services" element={<Services />} />
+            <Route path="services/:slug" element={<SolutionDetail />} />
+            <Route path="solutions" element={<Solutions />} />
+            <Route path="solutions/:slug" element={<SolutionDetail />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="portal" element={<Portal />} />
+            <Route path="admin" element={<Portal />} />
+            <Route path="privacy" element={<Privacy />} />
+            <Route path="terms" element={<Terms />} />
+            <Route path="case-studies" element={<CaseStudies />} />
+            <Route path="portfolio" element={<CaseStudies />} />
+            <Route path="careers" element={<Careers />} />
+            <Route path="faq" element={<FAQ />} />
+            <Route path="estimator" element={<Estimator />} />
+            <Route path="it-services" element={<ITServicesPage />} />
+            <Route path="software-development" element={<SoftwareDevelopmentPage />} />
+          </Route>
 
-        {/* Authentication */}
-        <Route path="/login" element={<AuthLayout />}>
-          <Route index element={<Login />} />
-        </Route>
-        
-        {/* Application / OS */}
-        <Route path="/app" element={<AppLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="crm" element={<CRM />} />
-          <Route path="projects" element={<Projects />} />
-          <Route path="tickets" element={<Tickets />} />
-          <Route path="finance" element={<Finance />} />
-          <Route path="documents" element={<Documents />} />
-          <Route path="ai" element={<AI />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-      </Routes>
+          {/* Authentication */}
+          <Route path="/login" element={<AuthLayout />}>
+            <Route index element={<Login />} />
+          </Route>
+          
+          {/* Application / OS */}
+          <Route path="/app" element={<AppLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="crm" element={<CRM />} />
+            <Route path="projects" element={<Projects />} />
+            <Route path="tickets" element={<Tickets />} />
+            <Route path="finance" element={<Finance />} />
+            <Route path="documents" element={<Documents />} />
+            <Route path="ai" element={<AI />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

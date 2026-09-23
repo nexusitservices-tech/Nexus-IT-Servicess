@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export interface InitialPageLoaderProps {
@@ -8,18 +8,24 @@ export interface InitialPageLoaderProps {
 }
 
 /**
- * Blurry White Fluid PageLoader:
- * - Frosted, milky white fluid liquid backdrop with organic floating blobs
- * - Heavy multi-layer glass blur (backdrop-blur-2xl)
- * - Pure borderless brand logo with smooth fade in and fade out
- * - No loading bars, borders, or telemetry
+ * High-Performance Mobile-Optimized Blurry White Fluid PageLoader:
+ * - Fluid pearlescent white backdrop with hardware-accelerated transforms
+ * - Dynamic adaptive timing: ~380ms for mobile, ~680ms for desktop
+ * - Tap-to-dismiss support for instant mobile responsiveness
+ * - Clean borderless brand logo with smooth fade in and fade out
  */
 export function InitialPageLoader({
   isLoading,
   onComplete,
-  minDuration = 850,
+  minDuration,
 }: InitialPageLoaderProps) {
   const [hasCompleted, setHasCompleted] = useState(false);
+
+  const isMobile = useMemo(() => {
+    return typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+  }, []);
+
+  const effectiveDuration = minDuration !== undefined ? minDuration : (isMobile ? 380 : 680);
 
   const handleFinish = useCallback(() => {
     setHasCompleted(true);
@@ -38,12 +44,12 @@ export function InitialPageLoader({
 
     const timer = setTimeout(() => {
       handleFinish();
-    }, minDuration);
+    }, effectiveDuration);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [isLoading, minDuration, handleFinish]);
+  }, [isLoading, effectiveDuration, handleFinish]);
 
   return (
     <AnimatePresence mode="wait">
@@ -53,53 +59,53 @@ export function InitialPageLoader({
           role="status"
           aria-live="polite"
           aria-label="Loading Nexus IT Services"
+          onClick={handleFinish}
+          onTouchStart={handleFinish}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ 
             opacity: 0, 
-            filter: 'blur(12px)',
-            transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } 
+            filter: 'blur(8px)',
+            transition: { duration: isMobile ? 0.25 : 0.38, ease: [0.16, 1, 0.3, 1] } 
           }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="fixed inset-0 z-[99999] flex items-center justify-center select-none px-6 overflow-hidden"
+          transition={{ duration: 0.28, ease: 'easeOut' }}
+          className="fixed inset-0 z-[99999] flex items-center justify-center select-none px-6 overflow-hidden cursor-pointer will-change-[opacity,filter]"
         >
           {/* Blurry White Fluid Canvas */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {/* Base Translucent Milky Glass */}
-            <div className="absolute inset-0 bg-white/75 backdrop-blur-2xl" />
+            <div className="absolute inset-0 bg-white/80 backdrop-blur-xl sm:backdrop-blur-2xl" />
 
             {/* Fluid Organic Blob 1: Gentle Blue/Cyan Pearlescent Flow */}
             <motion.div
               animate={{
-                x: [-35, 35, -35],
-                y: [-25, 25, -25],
-                scale: [1, 1.12, 1],
-                borderRadius: ['40% 60% 70% 30% / 40% 50% 60% 50%', '60% 40% 30% 70% / 50% 60% 40% 60%', '40% 60% 70% 30% / 40% 50% 60% 50%'],
+                x: [-25, 25, -25],
+                y: [-20, 20, -20],
+                scale: [1, 1.08, 1],
               }}
-              transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-20 -left-20 w-[480px] h-[480px] bg-gradient-to-br from-white via-sky-100/60 to-blue-100/40 blur-3xl opacity-80"
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute -top-16 -left-16 w-[360px] sm:w-[480px] h-[360px] sm:h-[480px] rounded-full bg-gradient-to-br from-white via-sky-100/60 to-blue-100/40 blur-2xl sm:blur-3xl opacity-80 will-change-transform"
             />
 
             {/* Fluid Organic Blob 2: Soft Indigo/Slate Pearlescent Flow */}
             <motion.div
               animate={{
-                x: [35, -35, 35],
-                y: [25, -25, 25],
-                scale: [1.1, 0.95, 1.1],
-                borderRadius: ['50% 50% 40% 60% / 60% 40% 60% 40%', '40% 60% 60% 40% / 40% 60% 50% 50%', '50% 50% 40% 60% / 60% 40% 60% 40%'],
+                x: [25, -25, 25],
+                y: [20, -20, 20],
+                scale: [1.08, 0.96, 1.08],
               }}
-              transition={{ duration: 8.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -bottom-20 -right-20 w-[520px] h-[520px] bg-gradient-to-tl from-white via-indigo-50/70 to-slate-100/60 blur-3xl opacity-80"
+              transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute -bottom-16 -right-16 w-[380px] sm:w-[520px] h-[380px] sm:h-[520px] rounded-full bg-gradient-to-tl from-white via-indigo-50/70 to-slate-100/60 blur-2xl sm:blur-3xl opacity-80 will-change-transform"
             />
 
             {/* Fluid Center Radiant Liquid Core */}
             <motion.div
               animate={{
-                scale: [0.95, 1.08, 0.95],
-                opacity: [0.75, 0.95, 0.75],
+                scale: [0.96, 1.06, 0.96],
+                opacity: [0.8, 0.95, 0.8],
               }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-white/90 blur-2xl"
+              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[420px] h-[320px] sm:h-[420px] rounded-full bg-white/90 blur-xl sm:blur-2xl will-change-transform"
             />
           </div>
 
@@ -109,19 +115,21 @@ export function InitialPageLoader({
             animate={{ 
               opacity: 1, 
               scale: 1,
-              transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] }
+              transition: { duration: isMobile ? 0.3 : 0.42, ease: [0.16, 1, 0.3, 1] }
             }}
             exit={{ 
               opacity: 0, 
               scale: 0.98,
-              transition: { duration: 0.4, ease: 'easeInOut' } 
+              transition: { duration: isMobile ? 0.22 : 0.35, ease: 'easeInOut' } 
             }}
-            className="relative z-10 flex items-center justify-center pointer-events-none"
+            className="relative z-10 flex items-center justify-center pointer-events-none will-change-[opacity,transform]"
           >
             <img
               src="/logo.png"
               alt="Nexus IT Services"
-              className="w-48 sm:w-60 md:w-72 h-auto max-h-28 object-contain drop-shadow-[0_10px_25px_rgba(0,70,175,0.08)]"
+              width={288}
+              height={112}
+              className="w-44 sm:w-60 md:w-72 h-auto max-h-24 sm:max-h-28 object-contain drop-shadow-[0_10px_25px_rgba(0,70,175,0.08)]"
             />
           </motion.div>
         </motion.div>

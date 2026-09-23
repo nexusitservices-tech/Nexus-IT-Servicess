@@ -69,6 +69,11 @@ export default function Home() {
             src="/herobackground.jpg" 
             alt="Dubai Skyline & Enterprise Network Background" 
             referrerPolicy="no-referrer"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            width={1671}
+            height={941}
             className="w-full h-full object-cover object-center opacity-45 filter contrast-105 saturate-115"
           />
           <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_30%,#F8FAFC_90%)] opacity-75"></div>
@@ -273,6 +278,8 @@ export default function Home() {
                   <img
                     src={cap.image}
                     alt={cap.title}
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       const target = e.currentTarget;
@@ -365,6 +372,8 @@ export default function Home() {
                   <img 
                     src="/assets/blocks/block-discover.jpg" 
                     alt="Professional team collaborating in a modern tech office in Dubai" 
+                    loading="lazy"
+                    decoding="async"
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                     referrerPolicy="no-referrer"
                   />
@@ -388,6 +397,8 @@ export default function Home() {
                   <img 
                     src="/assets/blocks/block-strategize.jpg" 
                     alt="Strategize and Propose Architecture" 
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover opacity-20 filter contrast-105 saturate-110 group-hover:scale-105 group-hover:opacity-30 transition-all duration-700" 
                   />
@@ -431,6 +442,8 @@ export default function Home() {
                   <img 
                     src="/assets/blocks/block-build.jpg" 
                     alt="Build and Implement Technology" 
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover opacity-20 filter contrast-105 saturate-110 group-hover:scale-105 group-hover:opacity-30 transition-all duration-700" 
                   />
@@ -504,6 +517,8 @@ export default function Home() {
                   <img 
                     src="/assets/blocks/block-launch.jpg" 
                     alt="Mission Launch and 24/7 Operations Control in Dubai" 
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                   />
