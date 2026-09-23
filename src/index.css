@@ -1,0 +1,212 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Satoshi', sans-serif;
+  --font-hand: 'Caveat', cursive;
+  
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-marquee: marquee 35s linear infinite;
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  --color-maya-yellow: #FFC107;
+  --color-maya-yellow-light: #FFF9E6;
+  --color-maya-blue: #007BFF;
+  --color-maya-blue-dark: #0B1728;
+  --color-maya-blue-light: #E6F0FF;
+  --color-maya-border: #E5E7EB;
+
+  --color-nexus-ink: #07111F;
+  --color-nexus-navy: #0B1728;
+  --color-nexus-surface: #0F1C2E;
+  --color-nexus-brand: #0046AF;
+  --color-nexus-brand-dark: #00388C;
+  --color-nexus-brand-deep: #002B6D;
+  --color-nexus-brand-light: #EFF6FF;
+  --color-nexus-brand-border: #BFDBFE;
+  --color-nexus-blue: #0046AF;
+  --color-nexus-blue-bright: #1D63D6;
+  --color-nexus-cyan: #06B6D4;
+  --color-nexus-muted: #64748B;
+  --color-nexus-border: rgba(255, 255, 255, 0.10);
+  
+  --color-nexus-light-canvas: #F8FAFC;
+  --color-nexus-light-surface: #FFFFFF;
+  --color-nexus-light-border: #E2E8F0;
+}
+
+@layer base {
+  :root {
+    --background: #F8FAFC;
+    --foreground: #07111F;
+    --card: #FFFFFF;
+    --card-foreground: #07111F;
+    --popover: #FFFFFF;
+    --popover-foreground: #07111F;
+    --primary: #0046AF;
+    --primary-foreground: #FFFFFF;
+    --secondary: #F1F5F9;
+    --secondary-foreground: #0F1C2E;
+    --muted: #F1F5F9;
+    --muted-foreground: #64748B;
+    --accent: #EFF6FF;
+    --accent-foreground: #0046AF;
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+    --success: #22C55E;
+    --success-foreground: #FFFFFF;
+    --warning: #F59E0B;
+    --warning-foreground: #FFFFFF;
+    --info: #0046AF;
+    --info-foreground: #FFFFFF;
+    --border: #E2E8F0;
+    --input: #E2E8F0;
+    --ring: #0046AF;
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: #07111F;
+    --foreground: #F8FAFC;
+    --card: #0B1728;
+    --card-foreground: #F8FAFC;
+    --popover: #0F1C2E;
+    --popover-foreground: #F8FAFC;
+    --primary: #3B82F6;
+    --primary-foreground: #FFFFFF;
+    --secondary: #1E293B;
+    --secondary-foreground: #F8FAFC;
+    --muted: #1E293B;
+    --muted-foreground: #94A3B8;
+    --accent: #1E293B;
+    --accent-foreground: #F8FAFC;
+    --destructive: #7F1D1D;
+    --destructive-foreground: #F8FAFC;
+    --border: rgba(255, 255, 255, 0.10);
+    --input: rgba(255, 255, 255, 0.10);
+    --ring: #3B82F6;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+  * {
+    @apply border-[color:var(--border)];
+  }
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    @apply bg-[color:var(--background)] text-[color:var(--foreground)] antialiased selection:bg-[color:var(--primary)] selection:text-[color:var(--primary-foreground)];
+  }
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+  }
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Hardware-accelerated infinite marquee with seamless loop and pause-on-hover */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-smooth {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 36s linear infinite;
+  will-change: transform;
+}
+
+.marquee-container:hover .animate-marquee-smooth,
+.animate-marquee-smooth:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-smooth {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
+/* Multimillion-dollar Liquid-Glass Skeleton Shimmer */
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: #F1F5F9;
+}
+.skeleton-shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.65) 30%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.65) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: skeleton-shimmer-sweep 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  content: '';
+}
+
+@keyframes skeleton-shimmer-sweep {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Morphy interactive surface elevation */
+.morph-interactive {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
