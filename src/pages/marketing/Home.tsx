@@ -66,10 +66,10 @@ export default function Home() {
         {/* Background Visual Layer */}
         <div className="absolute inset-0 z-0 pointer-events-none select-none">
           <img 
-            src="/herobackground.jpeg" 
+            src="/herobackground.jpg" 
             alt="Dubai Skyline & Enterprise Network Background" 
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-center opacity-30 filter contrast-105 saturate-110"
+            className="w-full h-full object-cover object-center opacity-45 filter contrast-105 saturate-115"
           />
           <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_30%,#F8FAFC_90%)] opacity-75"></div>
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-blue-500/15 blur-[130px] rounded-full"></div>

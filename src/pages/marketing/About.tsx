@@ -246,10 +246,10 @@ export default function About() {
         {/* Background Visual Layer matching Home page style */}
         <div className="absolute inset-0 z-0 pointer-events-none select-none">
           <img 
-            src="/herobackground.jpeg" 
+            src="/herobackground.jpg" 
             alt="Dubai Skyline & Enterprise Network Background" 
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-center opacity-30 filter contrast-105 saturate-110"
+            className="w-full h-full object-cover object-center opacity-45 filter contrast-105 saturate-115"
           />
           <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_30%,#F8FAFC_90%)] opacity-75"></div>
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-blue-500/15 blur-[130px] rounded-full"></div>
@@ -360,10 +360,10 @@ export default function About() {
         {/* Rich Background Imagery Layer matching Home Page Aesthetic */}
         <div className="absolute inset-0 z-0 pointer-events-none select-none">
           <img 
-            src="/herobackground.jpeg" 
+            src="/herobackground.jpg" 
             alt="Dubai Enterprise Architecture Background" 
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-center opacity-25 filter contrast-125 saturate-120"
+            className="w-full h-full object-cover object-center opacity-35 filter contrast-125 saturate-120"
           />
           <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#0B1528] via-[#0B1528]/85 to-[#0B1528]"></div>
           <div className="absolute top-1/4 left-1/4 w-[600px] h-[350px] bg-blue-600/15 blur-[140px] rounded-full"></div>
