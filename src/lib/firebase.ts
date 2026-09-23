@@ -70,6 +70,24 @@ export interface ClientProjectRecord {
   createdAt: string;
 }
 
+export interface AccountRequestRecord {
+  id?: string;
+  requestId: string;
+  fullName: string;
+  email: string;
+  company: string;
+  designation?: string;
+  phone?: string;
+  service: string;
+  seats?: string;
+  useCase?: string;
+  status: 'pending' | 'approved' | 'rejected';
+  createdAt: string;
+  reviewedAt?: string;
+  reviewedBy?: string;
+  adminNotes?: string;
+}
+
 /**
  * Submit an inquiry to Firestore
  */
@@ -226,5 +244,201 @@ export async function validateFirestoreConnection(): Promise<boolean> {
   } catch (error) {
     console.warn('Firestore connectivity check note:', error);
     return false;
+  }
+}
+
+/**
+ * Submit an Account Signup Request for Client Portal access
+ */
+export async function submitAccountRequest(data: {
+  fullName: string;
+  email: string;
+  company: string;
+  designation?: string;
+  phone?: string;
+  service: string;
+  seats?: string;
+  useCase?: string;
+}): Promise<AccountRequestRecord> {
+  const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+  const requestId = `NX-REQ-${randomSuffix}`;
+  
+  const payload: Omit<AccountRequestRecord, 'id'> = {
+    requestId,
+    fullName: data.fullName.trim(),
+    email: data.email.trim().toLowerCase(),
+    company: data.company.trim(),
+    designation: data.designation?.trim() || 'Executive Lead',
+    phone: data.phone?.trim() || '',
+    service: data.service || 'Managed IT & Cloud Infrastructure',
+    seats: data.seats || '1-10 Users',
+    useCase: data.useCase?.trim() || 'Access to enterprise telemetry, tickets, and SLA reporting.',
+    status: 'pending',
+    createdAt: new Date().toISOString()
+  };
+
+  try {
+    const docRef = await addDoc(collection(db, 'accountRequests'), payload);
+    const created: AccountRequestRecord = { ...payload, id: docRef.id };
+    
+    // Also save in local storage for instant offline / cache fallback
+    try {
+      const backup: AccountRequestRecord[] = JSON.parse(localStorage.getItem('nexus_backup_account_requests') || '[]');
+      backup.unshift(created);
+      localStorage.setItem('nexus_backup_account_requests', JSON.stringify(backup));
+    } catch {
+      // ignore
+    }
+
+    return created;
+  } catch (error) {
+    console.error('Error submitting account request to Firestore:', error);
+    // Persist to local backup storage so request is not lost
+    const localRecord: AccountRequestRecord = {
+      ...payload,
+      id: `local_${Date.now()}`
+    };
+    try {
+      const backup: AccountRequestRecord[] = JSON.parse(localStorage.getItem('nexus_backup_account_requests') || '[]');
+      backup.unshift(localRecord);
+      localStorage.setItem('nexus_backup_account_requests', JSON.stringify(backup));
+    } catch {
+      // ignore
+    }
+    return localRecord;
+  }
+}
+
+/**
+ * Subscribe to real-time Account Requests (for Admin review)
+ */
+export function subscribeToAccountRequests(
+  callback: (requests: AccountRequestRecord[]) => void,
+  onError?: (err: Error) => void
+) {
+  try {
+    const q = query(collection(db, 'accountRequests'), orderBy('createdAt', 'desc'));
+    return onSnapshot(
+      q,
+      (snapshot) => {
+        const items = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        })) as AccountRequestRecord[];
+        callback(items);
+      },
+      (error) => {
+        console.warn('Firestore accountRequests listener fallback:', error);
+        if (onError) onError(error);
+        try {
+          const backup = JSON.parse(localStorage.getItem('nexus_backup_account_requests') || '[]');
+          callback(backup);
+        } catch {
+          callback([]);
+        }
+      }
+    );
+  } catch (err) {
+    if (onError && err instanceof Error) onError(err);
+    try {
+      const backup = JSON.parse(localStorage.getItem('nexus_backup_account_requests') || '[]');
+      callback(backup);
+    } catch {
+      callback([]);
+    }
+    return () => {};
+  }
+}
+
+/**
+ * Update Account Request Status (Admin review action: approve / reject)
+ */
+export async function updateAccountRequestStatus(
+  id: string,
+  status: 'pending' | 'approved' | 'rejected',
+  adminNotes?: string
+): Promise<void> {
+  const updateData = {
+    status,
+    reviewedAt: new Date().toISOString(),
+    reviewedBy: 'Nexus IT Administrator',
+    ...(adminNotes ? { adminNotes } : {})
+  };
+
+  try {
+    const docRef = doc(db, 'accountRequests', id);
+    await updateDoc(docRef, updateData);
+  } catch (error) {
+    console.error('Error updating account request status in Firestore:', error);
+  }
+
+  // Always update local backup cache too
+  try {
+    const backup: AccountRequestRecord[] = JSON.parse(localStorage.getItem('nexus_backup_account_requests') || '[]');
+    const updated = backup.map(item => item.id === id ? { ...item, ...updateData } : item);
+    localStorage.setItem('nexus_backup_account_requests', JSON.stringify(updated));
+  } catch {
+    // ignore
+  }
+}
+
+/**
+ * Seed initial realistic enterprise sample account requests if empty
+ */
+export async function seedSampleAccountRequestsIfEmpty(): Promise<void> {
+  try {
+    const snap = await getDocs(collection(db, 'accountRequests'));
+    if (!snap.empty) return;
+
+    const sampleRequests: Omit<AccountRequestRecord, 'id'>[] = [
+      {
+        requestId: 'NX-REQ-7821',
+        fullName: 'Khalid Bin Rashid Al-Falasi',
+        email: 'khalid@falasi-holdings.ae',
+        company: 'Al-Falasi Capital & Logistics',
+        designation: 'Chief Technology Officer',
+        phone: '+971 50 491 8820',
+        service: 'Managed IT & Cloud Infrastructure',
+        seats: '25-50 Users',
+        useCase: 'Need real-time SOC alerting and infrastructure monitoring across DIFC & Abu Dhabi hubs.',
+        status: 'pending',
+        createdAt: new Date(Date.now() - 3600000 * 2).toISOString()
+      },
+      {
+        requestId: 'NX-REQ-6394',
+        fullName: 'Elena Rostova',
+        email: 'elena@novapharma.com',
+        company: 'NovaPharma Middle East FZCO',
+        designation: 'Head of Information Systems',
+        phone: '+971 52 833 4102',
+        service: 'Cybersecurity & SOC Monitoring',
+        seats: '10-25 Users',
+        useCase: 'Seeking access to client portal for compliance documentation and vulnerability scan logs.',
+        status: 'pending',
+        createdAt: new Date(Date.now() - 3600000 * 5).toISOString()
+      },
+      {
+        requestId: 'NX-REQ-5108',
+        fullName: 'Tariq Al-Mansoor',
+        email: 'tariq@almansoor.ae',
+        company: 'Al-Mansoor Asset Management',
+        designation: 'Managing Director',
+        phone: '+971 54 902 1198',
+        service: 'Custom Software & API Engineering',
+        seats: '5-10 Users',
+        useCase: 'Require access to review sprint deliverables, staging builds, and SLA uptime status.',
+        status: 'approved',
+        createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+        reviewedAt: new Date(Date.now() - 86400000).toISOString(),
+        reviewedBy: 'Super Admin (Security Team)',
+        adminNotes: 'Verified enterprise contract & NDA on file. Full client portal tier granted.'
+      }
+    ];
+
+    for (const req of sampleRequests) {
+      await addDoc(collection(db, 'accountRequests'), req);
+    }
+  } catch (e) {
+    console.warn('Seeding sample account requests note:', e);
   }
 }

@@ -230,22 +230,18 @@ export default function Home() {
       </section>
 
       {/* Five Core Pillars with Morphy Cards */}
-      <section id="core-pillars-section" className="w-full py-12 sm:py-16 md:py-24 bg-[#090D16] text-white border-b border-white/10 relative overflow-hidden">
-        {/* Subtle Corporate Ambient Mesh for Glass Reflections */}
-        <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-[#0046AF]/25 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-10 -right-20 w-[600px] h-[600px] bg-blue-500/15 rounded-full blur-[160px] pointer-events-none" />
-
+      <section id="core-pillars-section" className="w-full py-12 sm:py-16 md:py-24 border-b border-slate-200/80 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <MorphBlock className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-16">
             <div>
-              <div className="text-xs font-bold tracking-wider text-blue-400 uppercase mb-2">Our Core Pillars</div>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+              <div className="text-xs font-bold tracking-wider text-[#0046AF] uppercase mb-2">Our Core Pillars</div>
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
                 Five integrated capabilities.<br />
-                <span className="text-slate-400">One accountable partner.</span>
+                <span className="text-slate-500">One accountable partner.</span>
               </h2>
             </div>
             <Link to="/services">
-              <button className="flex items-center gap-2 text-xs sm:text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors group cursor-pointer">
+              <button className="flex items-center gap-2 text-xs sm:text-sm font-bold text-[#0046AF] hover:text-blue-700 transition-colors group cursor-pointer">
                 <span>View all capabilities & packages</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -306,11 +302,11 @@ export default function Home() {
                 id={cap.cardId}
                 delay={i * 0.08} 
                 enableHover
-                className={`relative overflow-hidden p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 hover:border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.35)] hover:shadow-[0_20px_40px_rgba(0,70,175,0.3)] transition-all duration-300 group cursor-pointer ${cap.wide ? 'lg:col-span-2' : ''}`}
+                className={`relative overflow-hidden p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/80 backdrop-blur-md border border-slate-200/90 hover:border-[#0046AF]/60 shadow-sm hover:shadow-xl hover:shadow-[#0046AF]/10 transition-all duration-300 group cursor-pointer ${cap.wide ? 'lg:col-span-2' : ''}`}
               >
-                {/* Clear fluid background layer with 10px blur */}
+                {/* Clear fluid background layer with subtle blur */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-2xl sm:rounded-3xl">
-                  {/* Responsible image with 10px Gaussian blur */}
+                  {/* Responsible image with Gaussian blur */}
                   <img
                     src={cap.image}
                     alt={cap.title}
@@ -321,27 +317,27 @@ export default function Home() {
                         target.src = cap.fallbackImage;
                       }
                     }}
-                    className="w-full h-full object-cover object-center scale-110 group-hover:scale-115 transition-transform duration-700 ease-out filter blur-[10px] opacity-35 group-hover:opacity-50"
+                    className="w-full h-full object-cover object-center scale-110 group-hover:scale-115 transition-transform duration-700 ease-out filter blur-[10px] opacity-15 group-hover:opacity-25"
                   />
-                  {/* Fluid frosted glassmorphic overlay with 10px backdrop-blur */}
-                  <div className="absolute inset-0 bg-white/10 backdrop-blur-lg group-hover:bg-white/15 transition-colors duration-300" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#0046AF]/20 via-transparent to-blue-400/10 pointer-events-none" />
+                  {/* Fluid frosted glassmorphic overlay */}
+                  <div className="absolute inset-0 bg-white/70 backdrop-blur-xs group-hover:bg-white/60 transition-colors duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#0046AF]/5 via-transparent to-blue-400/5 pointer-events-none" />
                 </div>
 
                 {/* Card content - elevated above fluid blurred backdrop */}
                 <div className="relative z-10 flex flex-col justify-between h-full">
                   <div>
-                    <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-blue-400 mb-6 border border-white/20 group-hover:bg-[#0046AF] group-hover:text-white group-hover:border-[#0046AF] transition-all duration-300 shadow-2xs">
+                    <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-[#0046AF] mb-6 border border-blue-100 group-hover:bg-[#0046AF] group-hover:text-white group-hover:border-[#0046AF] transition-all duration-300 shadow-2xs">
                       <cap.icon className="w-6 h-6" />
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2 sm:mb-3 group-hover:text-[#0046AF] transition-colors duration-200">
                       {cap.title}
                     </h3>
-                    <p className={`text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 font-normal ${cap.wide ? 'max-w-xl' : ''}`}>
+                    <p className={`text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-normal ${cap.wide ? 'max-w-xl' : ''}`}>
                       {cap.desc}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-blue-400 group-hover:text-blue-300">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-[#0046AF] group-hover:text-blue-700">
                     <Link to={cap.link} className="hover:underline flex items-center gap-1.5 font-bold">
                       <span>Learn More</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Mail, 
@@ -13,6 +13,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { setPortalSession, loginAsAdmin } from '@/lib/portalAuth';
 
 export default function Login() {
   const [email, setEmail] = useState('admin@nexus.ae');
@@ -30,6 +31,19 @@ export default function Login() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
+    if (email.includes('admin')) {
+      loginAsAdmin();
+    } else {
+      setPortalSession({
+        email,
+        fullName: email.split('@')[0].toUpperCase(),
+        company: email.includes('almarai') ? 'Al Marai Group UAE' : 'Enterprise Partner',
+        role: 'client',
+        token: `AUTH-${Date.now()}`,
+        approvedAt: new Date().toISOString()
+      });
+    }
 
     setTimeout(() => {
       setLoading(false);
@@ -280,6 +294,20 @@ export default function Login() {
             >
               Specialist
             </button>
+          </div>
+
+          {/* Account Signup Request Callout */}
+          <div className="mt-4 pt-3 border-t border-slate-100 text-center">
+            <p className="text-xs text-slate-500 mb-1.5">
+              Don't have an approved enterprise client account?
+            </p>
+            <Link
+              to="/portal?tab=request"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0046AF] hover:underline"
+            >
+              <Lock className="w-3 h-3" />
+              <span>Submit Account Signup Request for Admin Review →</span>
+            </Link>
           </div>
         </div>
       </motion.div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { 
@@ -19,16 +19,40 @@ import {
   Activity,
   ChevronDown,
   X,
-  Send
+  Send,
+  Lock,
+  ShieldCheck,
+  KeyRound,
+  ArrowRight,
+  Sparkles
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { 
+  getPortalSession, 
+  isPortalApproved, 
+  clearPortalSession, 
+  loginAsAdmin, 
+  PortalSession 
+} from '@/lib/portalAuth';
 
 export default function AppLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [copilotOpen, setCopilotOpen] = useState(false);
+  const [portalApproved, setPortalApproved] = useState(isPortalApproved());
+  const [currentSession, setCurrentSession] = useState<PortalSession | null>(getPortalSession());
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAuth = () => {
+      setPortalApproved(isPortalApproved());
+      setCurrentSession(getPortalSession());
+    };
+    checkAuth();
+    window.addEventListener('portal-auth-changed', checkAuth);
+    return () => window.removeEventListener('portal-auth-changed', checkAuth);
+  }, [location.pathname]);
 
   const navigation = [
     { name: 'Dashboard', href: '/app', icon: LayoutDashboard },
@@ -38,6 +62,12 @@ export default function AppLayout() {
     { name: 'Finance', href: '/app/finance', icon: CreditCard },
     { name: 'Documents', href: '/app/documents', icon: FileText },
   ];
+
+  const handleLogout = () => {
+    clearPortalSession();
+    setPortalApproved(false);
+    navigate('/portal?tab=request');
+  };
 
   const isActive = (path: string) => {
     if (path === '/app' && location.pathname === '/app') return true;
@@ -62,6 +92,15 @@ export default function AppLayout() {
         {sidebarOpen && !mobileMenuOpen && (
           <button onClick={() => setSidebarOpen(false)} className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
             <PanelLeftClose className="w-4 h-4" />
+          </button>
+        )}
+        {mobileMenuOpen && (
+          <button 
+            onClick={() => setMobileMenuOpen(false)} 
+            className="md:hidden text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
+            aria-label="Close sidebar menu"
+          >
+            <X className="w-5 h-5" />
           </button>
         )}
       </div>
@@ -121,19 +160,88 @@ export default function AppLayout() {
           <Settings className={cn("w-4 h-4 shrink-0", (sidebarOpen || mobileMenuOpen) ? "mr-3" : "mr-0")} />
           {(sidebarOpen || mobileMenuOpen) && 'Settings'}
         </Link>
-        <Link
-          to="/login"
+        <button
+          onClick={handleLogout}
           className={cn(
-            "flex items-center rounded-xl px-3 py-2 text-xs font-medium text-slate-400 hover:bg-rose-500/10 hover:text-rose-400 transition-colors cursor-pointer",
+            "flex items-center rounded-xl px-3 py-2 text-xs font-medium text-slate-400 hover:bg-rose-500/10 hover:text-rose-400 transition-colors cursor-pointer text-left w-full",
             (!sidebarOpen && !mobileMenuOpen) && "justify-center px-0"
           )}
         >
-          <LogOut className={cn("w-4 h-4 shrink-0", (sidebarOpen || mobileMenuOpen) ? "mr-3" : "mr-0")} />
-          {(sidebarOpen || mobileMenuOpen) && 'Log out'}
-        </Link>
+          <Lock className={cn("w-4 h-4 shrink-0", (sidebarOpen || mobileMenuOpen) ? "mr-3" : "mr-0")} />
+          {(sidebarOpen || mobileMenuOpen) && 'Lock & Log out'}
+        </button>
       </div>
     </>
   );
+
+  // If user does not have an approved portal session, lock access and require signup request
+  if (!portalApproved) {
+    return (
+      <div className="min-h-screen bg-[#070A0E] text-white flex flex-col items-center justify-center p-4 sm:p-6 font-sans">
+        <div className="w-full max-w-lg bg-[#090C10] border border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl text-center space-y-6">
+          <div className="w-16 h-16 rounded-2xl bg-[#0046AF]/20 border border-blue-500/40 text-blue-400 flex items-center justify-center mx-auto shadow-lg">
+            <Lock className="w-8 h-8" />
+          </div>
+
+          <div className="space-y-2">
+            <span className="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold uppercase tracking-wider inline-block">
+              Client Portal Access Locked
+            </span>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              Enterprise Clearance Required
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-400 max-w-md mx-auto leading-relaxed">
+              Access to the Nexus Client Portal & Telemetry OS is strictly gated. Each user must submit an Account Signup Request which is reviewed by our administration before access is granted.
+            </p>
+          </div>
+
+          <div className="space-y-3 pt-2">
+            <button
+              onClick={() => navigate('/portal?tab=request')}
+              className="w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-[#0046AF] to-blue-600 hover:from-[#00388C] hover:to-[#0046AF] text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 cursor-pointer transition-all"
+            >
+              <FileText className="w-4 h-4" />
+              <span>Fill Account Signup Request Form</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+
+            <button
+              onClick={() => navigate('/portal?tab=status')}
+              className="w-full py-3 px-5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 font-semibold text-xs flex items-center justify-center gap-2 cursor-pointer transition-colors"
+            >
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span>Check Request Status or Sign In</span>
+            </button>
+
+            <button
+              onClick={() => navigate('/portal?tab=admin')}
+              className="w-full py-2.5 px-4 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer transition-colors"
+            >
+              <KeyRound className="w-3.5 h-3.5 text-amber-400" />
+              <span>Admin Review & Approval Console</span>
+            </button>
+          </div>
+
+          <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <Link to="/" className="hover:text-white transition-colors">
+              ← Return to Nexus Tech Homepage
+            </Link>
+            <button
+              onClick={() => {
+                loginAsAdmin();
+                setPortalApproved(true);
+                setCurrentSession(getPortalSession());
+              }}
+              className="text-[#0046AF] hover:text-blue-400 font-bold flex items-center gap-1 cursor-pointer"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>1-Click Admin Demo Unlock</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#070A0E] flex font-sans dark text-foreground overflow-hidden">
@@ -220,9 +328,22 @@ export default function AppLayout() {
             </button>
             
             <div className="flex items-center gap-2 pl-2">
-              <div className="w-8 h-8 rounded-xl bg-[#0046AF] border border-blue-400/40 flex items-center justify-center shadow-xs">
-                <span className="text-xs text-white font-bold font-mono">DXB</span>
+              <div className="hidden sm:flex flex-col text-right">
+                <span className="text-xs font-bold text-white leading-tight">
+                  {currentSession?.fullName || 'Enterprise Client'}
+                </span>
+                <span className="text-[10px] text-blue-400 font-mono truncate max-w-[140px]">
+                  {currentSession?.company || 'Nexus Portal'}
+                </span>
               </div>
+              <button
+                onClick={handleLogout}
+                title="Lock Portal & Log out"
+                className="px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 border border-white/10 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Lock className="w-3.5 h-3.5" />
+                <span className="hidden md:inline">Lock Portal</span>
+              </button>
             </div>
           </div>
         </header>

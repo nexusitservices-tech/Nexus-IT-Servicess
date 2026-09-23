@@ -6,7 +6,6 @@ import {
   ShieldCheck, Clock, Award, Cpu, Zap, Activity, Globe,
   MessageSquare, FileCode, Check, ChevronRight, Sparkles, Building2
 } from 'lucide-react';
-import { useCurrency } from '@/context/CurrencyContext';
 import { MorphBlock, MorphStagger } from '@/components/ui/MorphBlock';
 import { Typewriter } from '@/components/ui/Typewriter';
 import ITServicesPage from './ITServicesPage';
@@ -280,7 +279,6 @@ const SLUG_ALIASES: Record<string, string> = {
 
 export default function SolutionDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const { formatPrice } = useCurrency();
 
   // Resolve slug or fallback to alias
   const canonicalSlug = slug ? (SLUG_ALIASES[slug.toLowerCase()] || slug) : null;
@@ -361,16 +359,6 @@ export default function SolutionDetail() {
                     alt={solution.title} 
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
-                    <div className="text-white">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-blue-300 font-bold block">
-                        Enterprise Tier
-                      </span>
-                      <span className="text-lg font-bold">
-                        From {formatPrice(solution.startingPriceAed)}
-                      </span>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Telemetry Grid */}
