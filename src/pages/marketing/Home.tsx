@@ -101,50 +101,13 @@ export default function Home() {
               </MorphBlock>
               
               {/* Typewriter Staggered Subtitle */}
-              <MorphBlock direction="up" delay={0.2} className="max-w-2xl mb-8 sm:mb-10">
+              <MorphBlock direction="up" delay={0.2} className="max-w-2xl">
                 <TypewriterReveal 
                   as="p"
                   delay={0.25}
                   text="At NEXUS IT Services FZ-LLC, we don't just create and connect the technology your business needs to grow — we also design the right tools to elevate your brand's visibility and recognition in the market."
                   className="text-slate-600 text-base sm:text-lg md:text-xl font-normal leading-relaxed justify-center"
                 />
-              </MorphBlock>
-              
-              {/* Morphy Interactive CTAs */}
-              <MorphBlock direction="up" delay={0.3} className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                <Link to="/services" className="w-full sm:w-auto">
-                  <motion.button 
-                    whileHover={{ scale: 1.04, y: -2 }}
-                    whileTap={{ scale: 0.97 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                    className="w-full bg-gradient-to-r from-[#0046AF] to-blue-600 hover:from-[#00388C] hover:to-[#0046AF] text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold shadow-lg shadow-[#0046AF]/25 flex items-center justify-center gap-2 group cursor-pointer"
-                  >
-                    <span>Explore Our Services</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </motion.button>
-                </Link>
-
-                <Link to="/about" className="w-full sm:w-auto">
-                  <motion.button 
-                    whileHover={{ scale: 1.03, y: -2 }}
-                    whileTap={{ scale: 0.97 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                    className="w-full bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 text-slate-800 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <span>About Us</span>
-                  </motion.button>
-                </Link>
-
-                <Link to="/contact" className="w-full sm:w-auto">
-                  <motion.button 
-                    whileHover={{ scale: 1.03, y: -2 }}
-                    whileTap={{ scale: 0.97 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                    className="w-full bg-blue-50 hover:bg-blue-100 text-[#0046AF] border border-blue-200 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <span>Contact Us</span>
-                  </motion.button>
-                </Link>
               </MorphBlock>
             </div>
 
