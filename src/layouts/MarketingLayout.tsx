@@ -436,7 +436,7 @@ function HeaderNav() {
 }
 
 export default function MarketingLayout() {
-  const [isAppLoading, setIsAppLoading] = useState(false);
+  const [isAppLoading, setIsAppLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {

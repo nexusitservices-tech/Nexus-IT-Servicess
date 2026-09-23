@@ -5,6 +5,7 @@
 
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { RouteProgressBar } from '@/components/ui/PageLoader';
 import MarketingLayout from '@/layouts/MarketingLayout';
 import Home from '@/pages/marketing/Home';
 import About from '@/pages/marketing/About';
@@ -49,6 +50,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <RouteProgressBar />
       <Routes>
         {/* Marketing Site */}
         <Route path="/" element={<MarketingLayout />}>
