@@ -215,12 +215,15 @@ function HeaderNav() {
               {/* Header with Title and Close Button */}
               <div className="flex items-center justify-between px-4 py-3.5 border-b border-slate-100 bg-white shrink-0">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-[#0046AF] flex items-center justify-center text-white font-black text-xs">
-                    NX
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center overflow-hidden shrink-0">
+                    <img 
+                      src="/logo.png" 
+                      alt="Nexus IT Services Logo" 
+                      className="w-7 h-7 object-contain" 
+                    />
                   </div>
                   <div className="flex flex-col">
                     <span className="text-xs font-bold text-slate-900 leading-tight">Nexus IT Services</span>
-                    <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">FZ-LLC Dubai</span>
                   </div>
                 </div>
 
@@ -232,34 +235,6 @@ function HeaderNav() {
                 >
                   <X className="w-4 h-4" />
                 </button>
-              </div>
-
-              {/* Quick Currency Selector & Regional Tag */}
-              <div className="px-4 py-2 bg-slate-50 border-b border-slate-100 flex items-center justify-between shrink-0">
-                <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-600">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span>Downtown Dubai</span>
-                </div>
-                <div className="flex items-center p-0.5 rounded-full bg-slate-200/80 border border-slate-300/60">
-                  <button
-                    onClick={() => setCurrency('AED')}
-                    className={cn(
-                      "px-2.5 py-0.5 rounded-full text-[10px] font-bold transition-all cursor-pointer",
-                      currency === 'AED' ? 'bg-[#0046AF] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
-                    )}
-                  >
-                    AED
-                  </button>
-                  <button
-                    onClick={() => setCurrency('USD')}
-                    className={cn(
-                      "px-2.5 py-0.5 rounded-full text-[10px] font-bold transition-all cursor-pointer",
-                      currency === 'USD' ? 'bg-[#0046AF] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
-                    )}
-                  >
-                    USD
-                  </button>
-                </div>
               </div>
 
               {/* Scrollable Navigation Items */}
