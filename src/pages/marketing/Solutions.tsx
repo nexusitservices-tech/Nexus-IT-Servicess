@@ -402,7 +402,7 @@ export default function Solutions() {
               Need a custom architecture or technology quote?
             </h2>
             <p className="text-slate-300 text-base leading-relaxed">
-              Schedule an in-person discovery meeting with our technical directors at Boulevard Plaza, Downtown Dubai, or connect via WhatsApp for an immediate response.
+              Schedule an in-person discovery meeting with our technical directors at Radiance ONE Business Center, Rigga Al Buteen, Dubai, or connect via WhatsApp for an immediate response.
             </p>
             <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
               <Link to="/contact">

@@ -40,7 +40,7 @@ export default function DubaiOfficeLocation() {
                 <>
                   <img
                     src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85"
-                    alt="Downtown Dubai Boulevard Plaza Nexus IT Services HQ"
+                    alt="Radiance ONE Business Center Rigga Al Buteen Nexus IT Services Dubai HQ"
                     referrerPolicy="no-referrer"
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter contrast-105"
                   />
@@ -66,7 +66,7 @@ export default function DubaiOfficeLocation() {
               <div className="relative z-10 p-3 sm:p-5 flex items-center justify-between text-white gap-2 flex-wrap">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-md text-[11px] sm:text-xs font-semibold border border-slate-700/80 shadow-xs">
                   <span className="text-sm">🇦🇪</span>
-                  <span>Downtown Dubai • UAE HQ</span>
+                  <span>Rigga Al Buteen, Dubai • UAE HQ</span>
                 </span>
 
                 {/* Switcher tabs */}
@@ -129,7 +129,7 @@ export default function DubaiOfficeLocation() {
                 </h3>
 
                 <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                  We believe high-stakes enterprise projects require personal accountability. Our leadership team and senior engineers operate directly from Dubai, ready to meet at your corporate premises or our Downtown executive suite.
+                  We believe high-stakes enterprise projects require personal accountability. Our leadership team and senior engineers operate directly from Dubai, ready to meet at your corporate premises or our Radiance ONE Business Center offices.
                 </p>
 
                 {/* Locations list */}
@@ -137,11 +137,16 @@ export default function DubaiOfficeLocation() {
                   <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
                     <h4 className="text-xs font-bold text-slate-900 flex items-center gap-2 mb-1">
                       <MapPin className="w-4 h-4 text-[#0046AF]" />
-                      <span>Headquarters: Boulevard Plaza Tower 1</span>
+                      <span>Headquarters: Radiance ONE Business Center</span>
                     </h4>
                     <p className="text-xs text-slate-600 ml-6 leading-relaxed">
-                      Level 14, Sheikh Mohammed Bin Rashid Blvd, Downtown Dubai (Adjacent to Burj Khalifa & Dubai Mall Metro)
+                      9th floor, Dubai Creek Car parking, Rigga Al Buteen, Dubai, UAE
                     </p>
+                    <div className="ml-6 mt-1 flex flex-wrap items-center gap-3 text-[11px] text-slate-500 font-mono">
+                      <span>Tel: +971 52 6367221</span>
+                      <span>•</span>
+                      <span>Email: info@nexus.ae.org</span>
+                    </div>
                   </div>
 
                   <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">

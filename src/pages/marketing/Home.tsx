@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { 
   Server, Code, Bot, Palette, Briefcase, ArrowRight, 
-  Shield, Zap, ChevronDown, Quote, 
-  Layers, Search, Target, Rocket, Star,
-  Sparkles, RefreshCw
+  Quote, Layers, Search, Target, Rocket, Star,
+  CheckCircle2
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import UaeTrustBadges from '@/components/UaeTrustBadges';
 import { Typewriter, TypewriterReveal } from '@/components/ui/Typewriter';
-import { MorphBlock, MorphStagger } from '@/components/ui/MorphBlock';
-import { 
-  Skeleton, 
-  SkeletonCard, 
-  SkeletonMetrics, 
-  SkeletonHero, 
-  SkeletonMorphWrapper 
-} from '@/components/ui/skeleton';
+import { MorphBlock } from '@/components/ui/MorphBlock';
 
 const PARTNERS = [
   { name: 'AWS', url: '/partners/aws.svg', role: 'Cloud Infrastructure' },
@@ -33,31 +24,6 @@ const PARTNERS = [
 ];
 
 export default function Home() {
-  const [faqOpen, setFaqOpen] = useState<number | null>(0);
-
-  const faqs = [
-    { 
-      q: "Where is Nexus IT Services based and can you meet at our Dubai office?", 
-      a: "Yes, absolutely. Our headquarters is located in Dubai (Downtown / Dubai Internet City). We routinely conduct in-person technical discovery sessions, steering committee meetings, and executive reviews across Dubai, Abu Dhabi, and the wider UAE." 
-    },
-    { 
-      q: "How does your fixed-milestone pricing work in UAE Dirhams (AED)?", 
-      a: "We operate strictly with zero hidden fees. After a comprehensive discovery workshop, we provide a formal Scope of Work (SOW) with clear milestones (e.g., 30% Architecture & Design, 40% Functional Core, 30% Deployment & UAT) payable via UAE bank transfer or corporate card in AED or USD." 
-    },
-    { 
-      q: "Do you comply with UAE data protection and TDRA regulations?", 
-      a: "Yes. All software and cloud systems we deploy can be strictly hosted inside the UAE (e.g., AWS me-central-1 UAE or Microsoft Azure UAE North Dubai) to ensure full compliance with UAE Federal Decree-Law No. 45 on Personal Data Protection." 
-    },
-    { 
-      q: "What is your typical turnaround timeline for enterprise deliverables?", 
-      a: "Depending on scope, MVP web platforms and automated AI workflows are deployed within 2 to 4 weeks. Full enterprise ERP platforms and cloud migrations span 6 to 12 weeks with weekly sprint demonstrations." 
-    },
-    { 
-      q: "Do you provide dedicated SLA support after project handover?", 
-      a: "Yes. We offer Tier-1 UAE managed support contracts featuring 15-minute emergency response times, automated server health monitors, and dedicated local engineering managers in Dubai." 
-    }
-  ];
-
   return (
     <div className="flex flex-col items-center w-full overflow-hidden bg-[#F8FAFC]">
       
@@ -197,119 +163,212 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Five Core Pillars with Morphy Cards */}
-      <section id="core-pillars-section" className="w-full py-12 sm:py-16 md:py-24 border-b border-slate-200/80 relative overflow-hidden">
+      {/* Five Clear Service Pillars */}
+      <section id="core-pillars-section" className="w-full py-12 sm:py-16 md:py-24 border-b border-slate-200/80 relative overflow-hidden bg-gradient-to-b from-white via-slate-50/40 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <MorphBlock className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-16">
-            <div>
-              <div className="text-xs font-bold tracking-wider text-[#0046AF] uppercase mb-2">Our Core Pillars</div>
+          <MorphBlock className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-[#0046AF] text-xs font-bold uppercase tracking-wider mb-3">
+                <span className="w-2 h-2 rounded-full bg-[#0046AF]" />
+                Five Clear Service Pillars
+              </div>
               <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
-                Five integrated capabilities.<br />
-                <span className="text-slate-500">One accountable partner.</span>
+                Organized into five business divisions.<br />
+                <span className="text-slate-500">One coherent Nexus ecosystem.</span>
               </h2>
+              <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
+                Instead of presenting a large collection of individual services immediately, Nexus organizes your operations into five specialized business divisions engineered to scale together seamlessly.
+              </p>
             </div>
-            <Link to="/services">
-              <button className="flex items-center gap-2 text-xs sm:text-sm font-bold text-[#0046AF] hover:text-blue-700 transition-colors group cursor-pointer">
-                <span>View all capabilities & packages</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </Link>
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <Link to="/services">
+                <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold transition-all shadow-sm group cursor-pointer">
+                  <span>Explore full service matrix</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
+            </div>
           </MorphBlock>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {/* Five Business Divisions Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
             {[
               { 
+                number: "01",
+                divisionName: "IT Services",
+                subtitle: "Reliable Infrastructure & Technical Support",
                 icon: Server, 
-                title: "IT Services & Cloud Infrastructure", 
-                desc: "Enterprise networks, UAE data residency cloud migration (AWS/Azure), workstation fleet management, and 24/7 disaster recovery.",
+                colorAccent: "text-[#0046AF]",
+                badgeColor: "bg-blue-50 text-[#0046AF] border-blue-200/80",
+                iconBg: "bg-blue-50 text-[#0046AF] group-hover:bg-[#0046AF] group-hover:text-white",
                 image: "/it services.png",
                 fallbackImage: "/it-services.png",
                 link: "/solutions/it-services",
-                cardId: "pillar-card-it-services"
+                cardId: "pillar-card-01-it-services",
+                services: [
+                  "Managed IT",
+                  "Hardware & troubleshooting",
+                  "Networks",
+                  "Cloud",
+                  "Cybersecurity",
+                  "IT maintenance",
+                ]
               },
               { 
+                number: "02",
+                divisionName: "Software & Web",
+                subtitle: "Digital Products Built Around Your Business",
                 icon: Code, 
-                title: "Software & Web Development", 
-                desc: "Modern web platforms, custom ERP & CRM solutions, e-commerce stores, and high-performance mobile apps for iOS & Android.",
+                colorAccent: "text-sky-600",
+                badgeColor: "bg-sky-50 text-sky-700 border-sky-200/80",
+                iconBg: "bg-sky-50 text-sky-600 group-hover:bg-sky-600 group-hover:text-white",
                 image: "/software development.png",
                 fallbackImage: "/software-development.png",
                 link: "/solutions/software-development",
-                cardId: "pillar-card-software-development"
+                cardId: "pillar-card-02-software-web",
+                services: [
+                  "Websites",
+                  "E-commerce",
+                  "Web applications",
+                  "Custom software",
+                  "CRM",
+                  "Business systems",
+                ]
               },
               { 
+                number: "03",
+                divisionName: "AI & Automation",
+                subtitle: "Smarter Workflows. Less Manual Work.",
                 icon: Bot, 
-                title: "AI & Automation Solutions", 
-                desc: "Bilingual Arabic/English intelligent chatbots, automated WhatsApp customer service, workflow automation, and custom LLM tuning.",
+                colorAccent: "text-emerald-600",
+                badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200/80",
+                iconBg: "bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white",
                 image: "/ai automation.png",
                 fallbackImage: "/ai-automation.png",
                 link: "/solutions/ai-automation",
-                cardId: "pillar-card-ai-automation"
+                cardId: "pillar-card-03-ai-automation",
+                services: [
+                  "AI integration",
+                  "Business automation",
+                  "AI assistants",
+                  "Chatbots",
+                  "Workflow automation",
+                  "Data analysis",
+                ]
               },
               { 
+                number: "04",
+                divisionName: "Multimedia & Creative",
+                subtitle: "Creative Media, Visual Communication & Digital Brand Experiences",
                 icon: Palette, 
-                title: "Multimedia & Creative Production", 
-                desc: "Corporate brand identity, 4K executive video production, social media campaigns, and high-impact pitch presentations.",
+                colorAccent: "text-amber-600",
+                badgeColor: "bg-amber-50 text-amber-700 border-amber-200/80",
+                iconBg: "bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white",
                 image: "/creative production.png",
                 fallbackImage: "/creative-production.png",
                 link: "/solutions/creative-services",
-                cardId: "pillar-card-creative-production"
+                cardId: "pillar-card-04-multimedia-creative",
+                services: [
+                  "Branding",
+                  "Graphic design",
+                  "Photography",
+                  "Video",
+                  "Social media content",
+                  "Marketing materials",
+                ]
               },
               { 
+                number: "05",
+                divisionName: "Business Technology Consulting",
+                subtitle: "Strategic Technology, Digital Transformation & Business Growth",
                 icon: Briefcase, 
-                title: "Business Consulting & Strategy", 
-                desc: "Strategic technology roadmaps, vendor consolidation audits, and TDRA/DIFC digital transformation advisory.",
+                colorAccent: "text-slate-800",
+                badgeColor: "bg-slate-100 text-slate-800 border-slate-300/80",
+                iconBg: "bg-slate-100 text-slate-700 group-hover:bg-slate-800 group-hover:text-white",
                 image: "/business consulting.png",
                 fallbackImage: "/business-consulting.png",
                 link: "/solutions/consulting",
-                cardId: "pillar-card-business-consulting",
-                wide: true 
+                cardId: "pillar-card-05-consulting",
+                services: [
+                  "Technology strategy",
+                  "Digital transformation",
+                  "Process optimization",
+                  "Technology assessment",
+                  "Business systems",
+                  "IT advisory",
+                ]
               }
-            ].map((cap, i) => (
+            ].map((pillar, i) => (
               <MorphBlock 
-                key={i} 
-                id={cap.cardId}
-                delay={i * 0.08} 
+                key={pillar.number} 
+                id={pillar.cardId}
+                delay={i * 0.07} 
                 enableHover
-                className={`relative overflow-hidden p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/80 backdrop-blur-md border border-slate-200/90 hover:border-[#0046AF]/60 shadow-sm hover:shadow-xl hover:shadow-[#0046AF]/10 transition-all duration-300 group cursor-pointer ${cap.wide ? 'lg:col-span-2' : ''}`}
+                className="relative overflow-hidden p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-md border border-slate-200/90 hover:border-[#0046AF]/60 shadow-sm hover:shadow-xl hover:shadow-[#0046AF]/10 transition-all duration-300 group flex flex-col justify-between"
               >
                 {/* Clear fluid background layer with subtle blur */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-2xl sm:rounded-3xl">
-                  {/* Responsible image with Gaussian blur */}
                   <img
-                    src={cap.image}
-                    alt={cap.title}
+                    src={pillar.image}
+                    alt={pillar.divisionName}
                     loading="lazy"
                     decoding="async"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       const target = e.currentTarget;
-                      if (!target.src.endsWith(cap.fallbackImage)) {
-                        target.src = cap.fallbackImage;
+                      if (!target.src.endsWith(pillar.fallbackImage)) {
+                        target.src = pillar.fallbackImage;
                       }
                     }}
                     className="w-full h-full object-cover object-center scale-110 group-hover:scale-115 transition-transform duration-700 ease-out filter blur-[10px] opacity-15 group-hover:opacity-25"
                   />
-                  {/* Fluid frosted glassmorphic overlay */}
-                  <div className="absolute inset-0 bg-white/70 backdrop-blur-xs group-hover:bg-white/60 transition-colors duration-300" />
+                  <div className="absolute inset-0 bg-white/75 backdrop-blur-xs group-hover:bg-white/65 transition-colors duration-300" />
                   <div className="absolute inset-0 bg-gradient-to-tr from-[#0046AF]/5 via-transparent to-blue-400/5 pointer-events-none" />
                 </div>
 
-                {/* Card content - elevated above fluid blurred backdrop */}
-                <div className="relative z-10 flex flex-col justify-between h-full">
-                  <div>
-                    <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-[#0046AF] mb-6 border border-blue-100 group-hover:bg-[#0046AF] group-hover:text-white group-hover:border-[#0046AF] transition-all duration-300 shadow-2xs">
-                      <cap.icon className="w-6 h-6" />
+                {/* Card Top & Body */}
+                <div className="relative z-10 flex flex-col h-full">
+                  {/* Division Header: Number + Icon */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className={`text-xs font-mono font-bold tracking-wider px-2.5 py-1 rounded-md border ${pillar.badgeColor}`}>
+                      {pillar.number}
+                    </span>
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 shadow-2xs border border-slate-200/60 ${pillar.iconBg}`}>
+                      <pillar.icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2 sm:mb-3 group-hover:text-[#0046AF] transition-colors duration-200">
-                      {cap.title}
-                    </h3>
-                    <p className={`text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-normal ${cap.wide ? 'max-w-xl' : ''}`}>
-                      {cap.desc}
-                    </p>
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-[#0046AF] group-hover:text-blue-700">
-                    <Link to={cap.link} className="hover:underline flex items-center gap-1.5 font-bold">
-                      <span>Learn More</span>
+
+                  {/* Division Title */}
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0046AF] transition-colors leading-snug mb-1.5">
+                    {pillar.number} — {pillar.divisionName}
+                  </h3>
+
+                  {/* Subtitle / Value Proposition */}
+                  <p className="text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed mb-4 min-h-[38px]">
+                    {pillar.subtitle}
+                  </p>
+
+                  <div className="w-full h-px bg-slate-200/80 my-2" />
+
+                  {/* Six Specific Division Services */}
+                  <div className="my-2 flex-1">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5">
+                      Included Services
+                    </div>
+                    <ul className="space-y-1.5">
+                      {pillar.services.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-xs text-slate-700 group-hover:text-slate-900 transition-colors">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#0046AF] shrink-0 mt-0.5" />
+                          <span className="leading-tight font-medium">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Card Footer Link */}
+                  <div className="mt-5 pt-3 border-t border-slate-100/90 flex items-center justify-between text-xs font-bold text-[#0046AF] group-hover:text-blue-700">
+                    <Link to={pillar.link} className="hover:underline flex items-center gap-1.5 w-full justify-between">
+                      <span>Explore Division</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -317,6 +376,38 @@ export default function Home() {
               </MorphBlock>
             ))}
           </div>
+
+          {/* Unified Ecosystem Advantage Banner */}
+          <MorphBlock delay={0.35} className="mt-8 sm:mt-12 p-5 sm:p-7 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-950 via-[#002868] to-slate-900 text-white relative overflow-hidden shadow-xl border border-blue-900/50">
+            <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-blue-500/15 blur-3xl pointer-events-none" />
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              <div>
+                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-blue-300 font-semibold mb-2">
+                  <Layers className="w-4 h-4 text-blue-400" />
+                  <span>The Coherent Nexus Ecosystem</span>
+                </div>
+                <h4 className="text-lg sm:text-2xl font-bold text-white tracking-tight">
+                  Five Specialized Divisions. Zero Disconnected Vendors.
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mt-1.5 leading-relaxed">
+                  Instead of dealing with five separate agencies pointing fingers, every Nexus division is bound by unified SLAs, synchronized project management, and single-invoice governance backed by our engineering hub in Dubai.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <Link to="/estimator">
+                  <button className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/20 cursor-pointer backdrop-blur-sm">
+                    Interactive Scope Estimator
+                  </button>
+                </Link>
+                <Link to="/contact">
+                  <button className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-md cursor-pointer flex items-center gap-1.5">
+                    <span>Schedule Consultation</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </MorphBlock>
         </div>
       </section>
 
@@ -538,47 +629,6 @@ export default function Home() {
           </div>
       </section>
 
-      {/* Process Section with Morphy In-and-Out */}
-      <section className="w-full py-12 sm:py-16 md:py-24 border-b border-slate-200 bg-slate-50 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <MorphBlock className="mb-10 sm:mb-16 text-center max-w-2xl mx-auto">
-            <div className="text-xs font-bold tracking-wider text-blue-600 uppercase mb-2">
-              Our 5-Stage UAE Delivery Framework
-            </div>
-            <TypewriterReveal 
-              text="A transparent journey from concept to deployment."
-              className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight justify-center"
-            />
-          </MorphBlock>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 relative">
-            {[
-              { step: '01', icon: Layers, title: "Discover & Audit", desc: "We meet at your Dubai office or online to assess your tech stack, bottlenecks, and KPIs." },
-              { step: '02', icon: Briefcase, title: "Fixed Scope Proposal", desc: "You receive a clear SOW with fixed milestone pricing in AED, timeline, and exact deliverables." },
-              { step: '03', icon: Code, title: "Agile Development", desc: "Bi-weekly sprint reviews, live staging demos, and collaborative feedback with your team." },
-              { step: '04', icon: Shield, title: "Security & Launch", desc: "TDRA data checks, penetration testing, team training, and zero-downtime deployment." },
-              { step: '05', icon: Zap, title: "Continuous Support", desc: "Dedicated UAE-based SLA support, server monitoring, and proactive feature enhancements." }
-            ].map((st, i) => (
-              <MorphBlock 
-                key={i} 
-                delay={i * 0.1} 
-                enableHover
-                className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-2xs flex flex-col items-start"
-              >
-                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 font-bold flex items-center justify-center text-sm mb-4 border border-blue-100">
-                  {st.step}
-                </div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">{st.title}</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">{st.desc}</p>
-              </MorphBlock>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* UAE Trust Badges */}
-      <UaeTrustBadges />
-
       {/* UAE Client Testimonials */}
       <section className="w-full py-12 sm:py-16 md:py-24 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -636,65 +686,6 @@ export default function Home() {
                 </div>
               </MorphBlock>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Morphy Interactive FAQ Accordion */}
-      <section className="w-full py-12 sm:py-16 md:py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <MorphBlock className="text-center mb-10 sm:mb-16">
-            <div className="text-xs font-bold tracking-wider text-blue-600 uppercase mb-2">Got Questions?</div>
-            <TypewriterReveal 
-              text="Frequently Asked Questions"
-              className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight justify-center mb-3 sm:mb-4"
-            />
-            <p className="text-slate-500 text-xs sm:text-base">Everything you need to know about working with Nexus IT Services in Dubai.</p>
-          </MorphBlock>
-
-          <div className="space-y-3 sm:space-y-4">
-            {faqs.map((faq, index) => {
-              const isOpen = faqOpen === index;
-              return (
-                <motion.div
-                  key={index}
-                  layout
-                  transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                    isOpen ? 'bg-slate-50/80 border-blue-400/80 shadow-xs' : 'bg-white border-slate-200 hover:border-slate-300'
-                  }`}
-                >
-                  <button
-                    onClick={() => setFaqOpen(isOpen ? null : index)}
-                    className="w-full py-4 sm:py-5 px-4 sm:px-6 text-left flex items-center justify-between gap-4 cursor-pointer"
-                  >
-                    <span className="font-bold text-slate-900 text-sm sm:text-base md:text-lg">{faq.q}</span>
-                    <motion.div
-                      animate={{ rotate: isOpen ? 180 : 0 }}
-                      transition={{ duration: 0.25 }}
-                    >
-                      <ChevronDown className="w-5 h-5 text-slate-500 shrink-0" />
-                    </motion.div>
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        key="content"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      >
-                        <div className="px-4 sm:px-6 pb-4 sm:pb-6 pt-1 text-slate-600 leading-relaxed text-xs sm:text-sm md:text-base border-t border-slate-100/80">
-                          {faq.a}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
           </div>
         </div>
       </section>

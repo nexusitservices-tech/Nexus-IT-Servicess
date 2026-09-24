@@ -38,7 +38,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 'difc-proptech-platform',
     category: 'software',
     title: 'DIFC FinTech & PropTech Digital Portals',
-    location: 'Level 14, Boulevard Plaza & DIFC Tech Hub',
+    location: 'Radiance ONE Business Center & DIFC Tech Hub',
     description: 'Bespoke web and mobile platforms built for Dubai real estate conglomerates and financial firms, featuring native Arabic RTL and payment gateway sync.',
     image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80',
     tags: ['Next.js 14', 'Flutter Mobile', 'Arabic RTL', 'UAE Pass'],
@@ -65,10 +65,10 @@ const GALLERY_ITEMS: GalleryItem[] = [
     deliverable: 'Custom fine-tuned bilingual LLM model with private data boundary and WhatsApp verified green-tick onboarding.'
   },
   {
-    id: 'downtown-executive-advisory',
+    id: 'dubai-executive-advisory',
     category: 'advisory',
-    title: 'Downtown Dubai Executive Tech Advisory',
-    location: 'Sheikh Mohammed Bin Rashid Blvd, Downtown Dubai',
+    title: 'Dubai Executive Tech Advisory & Strategy',
+    location: 'Radiance ONE Business Center, Rigga Al Buteen, Dubai',
     description: 'High-level fractional CTO guidance, digital transformation strategy aligned with Dubai Economic Agenda D33, and vendor consolidation audits.',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
     tags: ['Fractional CTO', 'Dubai D33', 'IT Governance', 'Vendor Audit'],

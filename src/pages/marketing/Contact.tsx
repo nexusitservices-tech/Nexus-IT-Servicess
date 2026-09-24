@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -16,6 +17,7 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [ticketId, setTicketId] = useState<string>('');
+  const [searchParams] = useSearchParams();
   const [copiedAddress, setCopiedAddress] = useState(false);
   const [mapExpanded, setMapExpanded] = useState(false);
   const [formData, setFormData] = useState({
@@ -30,9 +32,32 @@ export default function Contact() {
     message: ''
   });
 
+  useEffect(() => {
+    const intent = searchParams.get('intent');
+    const topic = searchParams.get('topic');
+    if (intent === 'consultant') {
+      setFormData(prev => ({
+        ...prev,
+        service: 'Technology Advisory & Fractional CTO',
+        message: prev.message || 'Requesting a strategy consultation to evaluate our technology roadmap and business systems.'
+      }));
+    } else if (intent === 'project') {
+      setFormData(prev => ({
+        ...prev,
+        message: prev.message || 'We are looking to start a new project. Below are our high-level requirements, timeline, and goals:'
+      }));
+    } else if (topic === 'insights') {
+      setFormData(prev => ({
+        ...prev,
+        service: 'Custom Software & Web Platform',
+        message: prev.message || 'We read your engineering insights and would like to discuss implementation details for our stack.'
+      }));
+    }
+  }, [searchParams]);
+
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(
-      "Nexus IT Services, Level 14, Boulevard Plaza Tower 1, Sheikh Mohammed Bin Rashid Blvd, Downtown Dubai, United Arab Emirates"
+      "Nexus IT Services, Radiance ONE Business Center 9th floor, Dubai Creek Car parking, Rigga Al Buteen, Dubai, United Arab Emirates"
     );
     setCopiedAddress(true);
     setTimeout(() => setCopiedAddress(false), 2400);
@@ -116,10 +141,10 @@ export default function Contact() {
                           </span>
                         </div>
                         <p className="text-slate-600 text-xs leading-relaxed mt-0.5">
-                          Level 14, Boulevard Plaza Tower 1<br />
-                          Sheikh Mohammed Bin Rashid Blvd, Downtown Dubai, UAE
+                          Radiance ONE Business Center, 9th Floor<br />
+                          Dubai Creek Car parking, Rigga Al Buteen, Dubai, UAE
                         </p>
-                        <p className="text-[11px] text-blue-600 font-medium mt-0.5">Secondary Hub: Dubai Internet City (DIC)</p>
+                        <p className="text-[11px] text-blue-600 font-medium mt-0.5">Direct Access: Dubai Creek &amp; Rigga Business District</p>
                       </div>
                     </div>
                   </div>
@@ -256,9 +281,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="text-slate-900 font-bold text-sm mb-1">Corporate Hotline</h4>
-                    <p className="text-slate-600 text-xs font-mono">+971 4 800 NEXUS (63987)</p>
-                    <p className="text-slate-600 text-xs font-mono">+971 52 636 7221</p>
-                    <p className="text-[11px] text-slate-400 mt-1">Available Mon - Fri, 9 AM - 6 PM GST</p>
+                    <a href="tel:+971526367221" className="text-slate-900 hover:text-[#0046AF] text-sm font-mono font-bold block transition-colors">+971 52 6367221</a>
+                    <p className="text-[11px] text-slate-500 mt-1">Direct Technical Support &amp; Executive Advisory</p>
+                    <p className="text-[11px] text-slate-400">Available Mon - Fri, 9 AM - 6 PM GST</p>
                   </div>
                 </div>
 
@@ -269,8 +294,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="text-slate-900 font-bold text-sm mb-1">Corporate Email</h4>
-                    <p className="text-slate-600 text-xs">contact@nexus.ae</p>
-                    <p className="text-slate-600 text-xs">enterprise@nexus.ae</p>
+                    <a href="mailto:info@nexus.ae.org" className="text-[#0046AF] hover:underline text-sm font-semibold block transition-colors">info@nexus.ae.org</a>
+                    <p className="text-[11px] text-slate-400 mt-1">Guaranteed enterprise response within 2 hours</p>
                   </div>
                 </div>
               </div>
@@ -442,7 +467,7 @@ export default function Contact() {
                       className="w-full h-10 px-3 py-2 text-xs rounded-md border border-slate-300 bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
                     >
                       <option value="In-Person at our Dubai Office">In-Person at our Office in Dubai / Abu Dhabi</option>
-                      <option value="In-Person at Nexus Downtown HQ">In-Person at Nexus Downtown Dubai HQ</option>
+                      <option value="In-Person at Radiance ONE Business Center">In-Person at Radiance ONE Business Center (Rigga Al Buteen, Dubai)</option>
                       <option value="Virtual Google Meet / Zoom">Virtual Video Conference (GST Time)</option>
                     </select>
                   </div>

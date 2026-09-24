@@ -24,7 +24,8 @@ import {
   ShieldCheck,
   KeyRound,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  MessageSquare
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { 
@@ -61,6 +62,7 @@ export default function AppLayout() {
     { name: 'Support Tickets', href: '/app/tickets', icon: Activity },
     { name: 'Finance', href: '/app/finance', icon: CreditCard },
     { name: 'Documents', href: '/app/documents', icon: FileText },
+    { name: 'WhatsApp Gateway', href: '/app/whatsapp', icon: MessageSquare },
   ];
 
   const handleLogout = () => {

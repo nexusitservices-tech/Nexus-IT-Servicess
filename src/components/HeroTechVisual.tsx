@@ -91,7 +91,7 @@ const TABS: CapabilityTab[] = [
     name: 'Nexus AI',
     shortName: 'Nexus AI',
     icon: Cpu,
-    badge: 'Level 14 Boulevard Plaza Command Center',
+    badge: 'Radiance ONE Command Center • Dubai Creek',
     title: 'Under 15-Minute Guaranteed On-Site Dubai Dispatch',
     subtitle: 'Senior certified network engineers ready for instant emergency deployment across Downtown, DIFC, Business Bay, and Dubai Marina. Proactive 24/7 telemetry monitoring.',
     heroHighlight: 'Under 15-Minute Rapid On-Site Arrival • 24/7/365 NOC Monitoring',
@@ -100,7 +100,7 @@ const TABS: CapabilityTab[] = [
       { label: 'First-Call Resolution Rate', value: '94.8%', change: 'Tier-3 engineers', color: 'text-cyan-400' },
       { label: 'Monitoring Telemetry', value: '24/7/365', change: 'Sub-second polling', color: 'text-sky-300' }
     ],
-    tags: ['Downtown Dubai HQ', 'Dedicated Account Lead', '24/7 NOC', 'Hardware Hot-Swap', 'Quarterly Audits']
+    tags: ['Rigga Al Buteen Hub', 'Dedicated Account Lead', '24/7 NOC', 'Hardware Hot-Swap', 'Quarterly Audits']
   }
 ];
 

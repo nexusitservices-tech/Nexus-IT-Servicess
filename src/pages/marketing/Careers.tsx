@@ -141,7 +141,7 @@ export default function Careers() {
         <MorphBlock className="max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold mb-4">
             <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-            <span>Dubai Engineering Hub • Level 14 Boulevard Plaza Tower 1</span>
+            <span>Dubai Engineering Hub • Radiance ONE Business Center, Rigga Al Buteen</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 mb-4 leading-tight">
             Build the Tech Foundation of the Future in Dubai.
@@ -189,9 +189,9 @@ export default function Careers() {
             <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center mb-3">
               <Building className="w-5 h-5" />
             </div>
-            <h4 className="text-base font-bold text-slate-900 mb-1">Downtown Dubai Headquarters</h4>
+            <h4 className="text-base font-bold text-slate-900 mb-1">Dubai Creek Tech Hub</h4>
             <p className="text-xs text-slate-500 leading-relaxed">
-              Panoramic Burj Khalifa views from Boulevard Plaza Tower 1 with cutting-edge M3 Max MacBooks and dual 4K monitors.
+              Radiance ONE Business Center, Rigga Al Buteen with cutting-edge M3 Max MacBooks and dual 4K monitors.
             </p>
           </div>
         </div>

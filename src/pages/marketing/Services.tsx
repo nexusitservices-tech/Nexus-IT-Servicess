@@ -54,12 +54,12 @@ export default function Services() {
   });
 
   const CATEGORIES = [
-    { id: 'all', label: 'All 5 Disciplines' },
-    { id: 'it-services', label: 'Cloud & Sovereign IT', icon: Server },
-    { id: 'software', label: 'Custom Software & ERP', icon: Code },
-    { id: 'ai', label: 'AI & Automation', icon: Bot },
-    { id: 'creative', label: 'Creative & Media', icon: Palette },
-    { id: 'consulting', label: 'Advisory & Fractional CTO', icon: Briefcase },
+    { id: 'all', label: 'All 5 Divisions' },
+    { id: 'it-services', label: '01 — IT Services', icon: Server },
+    { id: 'software', label: '02 — Software & Web', icon: Code },
+    { id: 'ai', label: '03 — AI & Automation', icon: Bot },
+    { id: 'creative', label: '04 — Multimedia & Creative', icon: Palette },
+    { id: 'consulting', label: '05 — Business Technology Consulting', icon: Briefcase },
   ];
 
   const SERVICES: ServiceItem[] = [
@@ -67,20 +67,21 @@ export default function Services() {
       id: "it-services",
       category: "it-services",
       icon: Server,
-      title: "IT Services & Sovereign Cloud Infrastructure",
+      title: "01 — IT Services",
       badge: "AWS me-central-1 & Azure UAE North",
-      subtitle: "Enterprise-grade stability, cyber security, and guaranteed in-country UAE data residency.",
+      subtitle: "Reliable Infrastructure & Technical Support for modern enterprises.",
       startingAed: 18000,
       sla: "15-Min Response • 99.99% Cloud Uptime",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80",
       locationTag: "AWS me-central-1 (UAE) & Azure North",
       highlightStat: { label: "Downtown DXB Latency", value: "< 1.4 ms", color: "text-emerald-400" },
       items: [
-        "In-Country Cloud Hosting (AWS me-central-1 UAE & Azure UAE North)",
-        "Zero-Trust Cybersecurity, Firewall Audits & Penetration Testing",
-        "Disaster Recovery, Automated Backups & Business Continuity",
-        "On-Premises Office Network, Wi-Fi 6 & Server Rack Configuration",
-        "Enterprise Workstation Lifecycle & Remote Helpdesk for Dubai Offices"
+        "Managed IT & Helpdesk Support",
+        "Hardware & Troubleshooting",
+        "Enterprise Networks & Wi-Fi 6",
+        "Cloud Migration (AWS me-central-1 & Azure UAE North)",
+        "Zero-Trust Cybersecurity & Penetration Testing",
+        "IT Maintenance & 24/7 Monitoring"
       ],
       techStack: ["AWS UAE", "Microsoft Azure", "Cloudflare", "Fortinet", "Cisco Meraki", "Docker"],
       liveTelemetry: [
@@ -101,20 +102,21 @@ export default function Services() {
       id: "software",
       category: "software",
       icon: Code,
-      title: "Custom Software & Web Development",
+      title: "02 — Software & Web",
       badge: "DIFC & Downtown Engineering",
-      subtitle: "Tailored business platforms, bespoke ERP/CRM & mobile applications built for Gulf market scalability.",
+      subtitle: "Digital Products Built Around Your Business.",
       startingAed: 28000,
       sla: "Bi-Weekly Sprint Releases • 100% Code Ownership",
       image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80",
       locationTag: "DIFC & Downtown Dubai Engineering Hub",
       highlightStat: { label: "Deployment Cadence", value: "Bi-Weekly", color: "text-cyan-400" },
       items: [
-        "High-Performance Modern Web Platforms (Next.js, React, Node.js)",
-        "Bespoke ERP & CRM Systems configured for UAE workflows",
-        "Native & Cross-Platform Mobile Applications (iOS & Android)",
-        "UAE Payment Gateway Integrations (Stripe, Network International, Telr)",
-        "Bilingual Arabic RTL (Right-to-Left) & English Localization"
+        "Modern Responsive Websites",
+        "High-Converting E-Commerce Platforms",
+        "Cloud-Native Web Applications",
+        "Custom Software Engineering",
+        "CRM & ERP Architectures",
+        "Scalable Business Systems & API Hubs"
       ],
       techStack: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Flutter", "Tailwind CSS"],
       liveTelemetry: [
@@ -135,20 +137,21 @@ export default function Services() {
       id: "ai",
       category: "ai",
       icon: Bot,
-      title: "Enterprise AI & Autonomous Workflows",
+      title: "03 — AI & Automation",
       badge: "Bilingual Arabic & English Neural Stack",
-      subtitle: "Intelligent conversational bots, WhatsApp Cloud integration & automated enterprise data pipelines.",
+      subtitle: "Smarter Workflows. Less Manual Work.",
       startingAed: 22000,
       sla: "Bilingual NLP • Custom Enterprise Fine-Tuning",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
       locationTag: "Dubai Silicon Oasis AI Innovation Lab",
       highlightStat: { label: "Response Speed", value: "0.6s Avg", color: "text-emerald-400" },
       items: [
-        "Official WhatsApp Business API Automated Support & Lead Bots",
-        "Bilingual Arabic / English Conversational Assistants",
-        "Automated Document OCR & Invoice/Trade Document Extraction",
-        "Predictive Business Intelligence Dashboards & Analytics",
-        "Custom Gemini & LLM Private Deployments with Data Privacy"
+        "AI Integration & Model Deployment",
+        "End-to-End Business Automation",
+        "Intelligent AI Assistants",
+        "Conversational AI Chatbots (WhatsApp & Web)",
+        "Workflow Automation & RPA",
+        "Advanced Data Analysis & Business Intelligence"
       ],
       techStack: ["Gemini 1.5 Pro", "LangChain", "OpenAI", "Python", "WhatsApp Cloud API", "FastAPI"],
       liveTelemetry: [
@@ -169,20 +172,21 @@ export default function Services() {
       id: "creative",
       category: "creative",
       icon: Palette,
-      title: "Multimedia & Corporate Creative Production",
+      title: "04 — Multimedia & Creative",
       badge: "Dubai Design District (d3) Studio",
-      subtitle: "Corporate brand systems, 4K executive cinematography, and investor pitch decks that command authority across the GCC.",
+      subtitle: "Creative Media, Visual Communication & Digital Brand Experiences.",
       startingAed: 12000,
       sla: "Full Commercial IP Rights Handed Over",
       image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=900&q=80",
       locationTag: "Dubai Design District (d3) Studio",
       highlightStat: { label: "Resolution & Grade", value: "4K Cinema", color: "text-amber-400" },
       items: [
-        "Comprehensive Brand Identity & Corporate Guidelines",
-        "4K Corporate Video Production & Executive Photography in Dubai",
-        "High-Stakes Investor Pitch Decks & Corporate Profiles",
-        "Social Media Campaign Design & Premium Visual Content",
-        "Packaging Design & Regional Collateral for Middle East Markets"
+        "Brand Identity & Corporate Guidelines",
+        "Graphic Design & Visual Assets",
+        "Executive & Commercial Photography",
+        "4K Video Production & Cinematography",
+        "Social Media Content Strategy & Creation",
+        "High-Impact Marketing Materials & Pitch Decks"
       ],
       techStack: ["Figma", "Adobe After Effects", "Premiere Pro", "DaVinci Resolve", "Cinema 4D"],
       liveTelemetry: [
@@ -204,20 +208,21 @@ export default function Services() {
       id: "consulting",
       category: "consulting",
       icon: Briefcase,
-      title: "Business Consulting & Fractional CTO",
+      title: "05 — Business Technology Consulting",
       badge: "Downtown Executive Boardroom",
-      subtitle: "Strategic guidance, technology vendor consolidation, and Dubai Economic Agenda (D33) alignment.",
+      subtitle: "Strategic Technology, Digital Transformation & Business Growth.",
       startingAed: 15000,
       sla: "Executive Advisory in Dubai Time Zone (GST)",
       image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80",
       locationTag: "Downtown Dubai Executive Boardroom",
       highlightStat: { label: "Cost Reductions", value: "Up to 35%", color: "text-emerald-400" },
       items: [
-        "Digital Transformation Strategy & Architectural Audits",
-        "Vendor Consolidation & Technology Cost-Reduction Reviews",
-        "TDRA Data Privacy & UAE Regulatory Compliance Audits",
-        "Fractional CTO Leadership for Growing UAE Startups & SMEs",
-        "M&A Technical Due Diligence & System Migration Roadmaps"
+        "Technology Strategy & Technical Roadmaps",
+        "Comprehensive Digital Transformation",
+        "Workflow & Process Optimization",
+        "Technology Assessment & Architecture Audits",
+        "Business Systems Integration",
+        "Executive IT Advisory & Fractional CTO"
       ],
       techStack: ["TOGAF", "ISO 27001", "TDRA Framework", "Agile/Scrum", "ITIL"],
       liveTelemetry: [

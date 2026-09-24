@@ -23,6 +23,9 @@ const FAQ = lazy(() => import('@/pages/marketing/FAQ'));
 const Estimator = lazy(() => import('@/pages/marketing/Estimator'));
 const ITServicesPage = lazy(() => import('@/pages/marketing/ITServicesPage'));
 const SoftwareDevelopmentPage = lazy(() => import('@/pages/marketing/SoftwareDevelopmentPage'));
+const Industries = lazy(() => import('@/pages/marketing/Industries'));
+const HowWeWork = lazy(() => import('@/pages/marketing/HowWeWork'));
+const Insights = lazy(() => import('@/pages/marketing/Insights'));
 
 // Lazy-load Auth Layout & Pages
 const AuthLayout = lazy(() => import('@/layouts/AuthLayout'));
@@ -38,6 +41,7 @@ const Projects = lazy(() => import('@/pages/app/Projects'));
 const Documents = lazy(() => import('@/pages/app/Documents'));
 const AI = lazy(() => import('@/pages/app/AI'));
 const Settings = lazy(() => import('@/pages/app/Settings'));
+const WhatsAppGateway = lazy(() => import('@/pages/app/WhatsAppGateway'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -83,6 +87,10 @@ export default function App() {
             <Route path="estimator" element={<Estimator />} />
             <Route path="it-services" element={<ITServicesPage />} />
             <Route path="software-development" element={<SoftwareDevelopmentPage />} />
+            <Route path="industries" element={<Industries />} />
+            <Route path="how-we-work" element={<HowWeWork />} />
+            <Route path="insights" element={<Insights />} />
+            <Route path="whatsapp-gateway" element={<WhatsAppGateway />} />
           </Route>
 
           {/* Authentication */}
@@ -100,6 +108,7 @@ export default function App() {
             <Route path="documents" element={<Documents />} />
             <Route path="ai" element={<AI />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="whatsapp" element={<WhatsAppGateway />} />
           </Route>
         </Routes>
       </Suspense>

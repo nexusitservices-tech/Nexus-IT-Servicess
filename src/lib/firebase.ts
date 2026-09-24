@@ -107,6 +107,18 @@ export async function submitInquiry(data: Omit<InquiryRecord, 'id' | 'status' | 
 
   try {
     const docRef = await addDoc(collection(db, 'inquiries'), payload);
+    
+    // Asynchronously dispatch instant WhatsApp alert to +971 52 6367221 via OpenWA Gateway
+    try {
+      fetch('/api/whatsapp/notify-inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(e => console.warn('WhatsApp alert dispatch non-blocking error:', e));
+    } catch {
+      // Non-blocking
+    }
+
     return docRef.id;
   } catch (error) {
     console.error('Error submitting inquiry to Firestore:', error);

@@ -69,7 +69,7 @@ export default function AboutDubaiShowcase() {
               <div className="absolute top-3 left-3">
                 <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white border border-slate-700 text-[10px] font-semibold">
                   <MapPin className="w-3 h-3 text-blue-400" />
-                  <span>Boulevard Plaza Tower 1, Downtown</span>
+                  <span>Radiance ONE Business Center, Rigga Al Buteen</span>
                 </span>
               </div>
             </div>

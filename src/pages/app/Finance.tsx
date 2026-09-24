@@ -441,9 +441,9 @@ export default function Finance() {
                     <span className="text-xl font-bold tracking-tight text-slate-950">Nexus IT Services FZ-LLC</span>
                   </div>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    Level 14, Boulevard Plaza Tower 1<br />
-                    Sheikh Mohammed bin Rashid Blvd, Downtown Dubai, UAE<br />
-                    Email: finance@nexus-it.ae • Tel: +971 4 800 NEXUS<br />
+                    Radiance ONE Business Center 9th floor<br />
+                    Dubai Creek Car parking, Rigga Al Buteen, Dubai, UAE<br />
+                    Email: info@nexus.ae.org • Tel: +971 52 6367221<br />
                     <strong className="text-slate-800 font-mono">Supplier TRN: 100293847500003</strong>
                   </p>
                 </div>

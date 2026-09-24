@@ -125,8 +125,9 @@ export default function Privacy() {
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-mono text-slate-700 space-y-1">
               <div>Entity: Nexus IT Services FZ-LLC</div>
               <div>Attention: Data Protection & Legal Compliance Officer</div>
-              <div>Email: legal@nexus.ae / privacy@nexus.ae</div>
-              <div>Office: Level 14, Boulevard Plaza Tower 1, Downtown Dubai, UAE</div>
+              <div>Email: info@nexus.ae.org / legal@nexus.ae.org</div>
+              <div>Office: Radiance ONE Business Center 9th floor, Dubai Creek Car parking, Rigga Al Buteen, Dubai, UAE</div>
+              <div>Hotline: +971 52 6367221</div>
             </div>
           </div>
 

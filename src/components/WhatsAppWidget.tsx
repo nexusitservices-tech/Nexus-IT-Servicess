@@ -19,6 +19,18 @@ export default function WhatsAppWidget() {
   const handleSendWhatsApp = (customText?: string) => {
     const textToSend = customText || message || "Hello Nexus IT Services! I'd like to discuss a project in Dubai.";
     const encoded = encodeURIComponent(textToSend);
+    
+    // Automatically record & forward via OpenWA Gateway
+    fetch('/api/whatsapp/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: `💬 *Website Chat Lead:*\n${textToSend}`,
+        phone: '+971 52 6367221',
+        source: 'Website Floating Widget'
+      })
+    }).catch(() => {});
+
     window.open(`https://wa.me/971526367221?text=${encoded}`, '_blank');
   };
 
@@ -26,6 +38,18 @@ export default function WhatsAppWidget() {
     e.preventDefault();
     if (!phone) return;
     setCallbackRequested(true);
+
+    // Send immediate high-priority alert to owner WhatsApp (+971 52 6367221)
+    fetch('/api/whatsapp/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: `⚡ *URGENT 15-MIN CALLBACK REQUEST*\n━━━━━━━━━━━━━━━━━━━━\n📞 *Client Phone:* ${phone}\n📍 *Source:* Website Floating Widget\n⏱️ *Timestamp:* ${new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai' })} GST`,
+        phone: '+971 52 6367221',
+        source: 'Emergency Callback Request'
+      })
+    }).catch(() => {});
+
     setTimeout(() => {
       setCallbackRequested(false);
       setIsOpen(false);

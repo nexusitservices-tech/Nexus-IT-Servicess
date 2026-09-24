@@ -745,7 +745,7 @@ export default function SolutionDetail() {
           <div className="max-w-2xl mx-auto space-y-6 relative z-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold">
               <Building2 className="w-3.5 h-3.5" />
-              <span>In-Person Discovery at Boulevard Plaza, Downtown Dubai</span>
+              <span>In-Person Discovery at Radiance ONE Business Center, Rigga Al Buteen, Dubai</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900">
               Ready to deploy {solution.title}?

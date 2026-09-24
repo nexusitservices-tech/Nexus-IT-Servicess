@@ -302,7 +302,7 @@ export default function CaseStudies() {
             Book an In-Person Technical Discovery Session
           </h2>
           <p className="text-slate-300 text-sm max-w-lg mx-auto">
-            Meet our senior solutions directors at Boulevard Plaza, Downtown Dubai, or invite us to your headquarters.
+            Meet our senior solutions directors at Radiance ONE Business Center, Rigga Al Buteen, Dubai, or invite us to your headquarters.
           </p>
           <div className="pt-2 flex justify-center gap-4">
             <Link to="/contact">

@@ -6,7 +6,7 @@ import {
   Database, RefreshCw, Mail, Phone, Building2, User, 
   ExternalLink, Filter, Plus, ArrowRight, Sparkles, Check,
   KeyRound, ShieldAlert, LogIn, ChevronRight, FileText,
-  UserCheck, XCircle, Search, Laptop, Layers
+  UserCheck, XCircle, Search, Laptop, Layers, MessageCircle
 } from 'lucide-react';
 import { 
   InquiryRecord, 
@@ -1051,6 +1051,13 @@ export default function Portal() {
                     </div>
 
                     <div className="flex flex-wrap items-center gap-2">
+                      <Link
+                        to="/whatsapp-gateway"
+                        className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        <span>WhatsApp API Gateway</span>
+                      </Link>
                       <button
                         onClick={handleLoginAsSuperAdmin}
                         className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 cursor-pointer"
