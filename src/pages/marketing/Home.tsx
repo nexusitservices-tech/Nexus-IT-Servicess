@@ -8,6 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Typewriter, TypewriterReveal } from '@/components/ui/Typewriter';
 import { MorphBlock } from '@/components/ui/MorphBlock';
+import NexusServicesSection from '@/components/NexusServicesSection';
 
 const PARTNERS = [
   { name: 'AWS', url: '/partners/aws.svg', role: 'Cloud Infrastructure' },
@@ -52,14 +53,18 @@ export default function Home() {
           <div className="flex flex-col items-center text-center">
               {/* Dynamic Typewriter Headline */}
               <MorphBlock direction="up" delay={0.1}>
-                <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-slate-900 leading-[1.08] mb-6 sm:mb-8 flex flex-col items-center text-center">
-                  <span>Technology.</span>
+                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.12] mb-6 sm:mb-8 flex flex-col items-center text-center">
+                  <span>Nexus.</span>
                   <span className="min-h-[2.3em] sm:min-h-[1.15em] flex items-center justify-center text-center">
                     <Typewriter 
                       words={[
-                        'Digital Marketing', 
-                        'Professional Adverts', 
-                        'Software Development & Multimedia'
+                        'Software Development',
+                        'Web Development',
+                        'IT',
+                        'Creative Production',
+                        'Advertising',
+                        'Marketing',
+                        'Branding & More'
                       ]} 
                       typingSpeed={85}
                       deletingSpeed={45}
@@ -67,7 +72,7 @@ export default function Home() {
                       className="text-transparent bg-clip-text bg-gradient-to-r from-[#0046AF] via-blue-600 to-indigo-600"
                     />
                   </span>
-                  <span>Delivered.</span>
+                  <span>Services.</span>
                 </h1>
               </MorphBlock>
               
@@ -114,7 +119,7 @@ export default function Home() {
                       key={`${partner.name}-${i}`} 
                       whileHover={{ y: -3, scale: 1.02 }}
                       transition={{ type: 'spring', stiffness: 350, damping: 20 }}
-                      className="group flex items-center gap-3.5 px-4 py-3 sm:px-5 sm:py-3.5 rounded-2xl bg-transparent hover:bg-slate-100/60 border border-slate-200/70 hover:border-blue-400/50 shadow-none cursor-pointer shrink-0 min-w-[215px] sm:min-w-[245px] transition-all duration-300"
+                      className="group flex items-center gap-3.5 px-4 py-3 sm:px-5 sm:py-3.5 rounded-2xl bg-transparent hover:bg-slate-100/60 shadow-none cursor-pointer shrink-0 min-w-[215px] sm:min-w-[245px] transition-all duration-300"
                     >
                       <div className="w-11 h-11 rounded-xl bg-transparent flex items-center justify-center p-2 shrink-0 group-hover:scale-105 transition-transform duration-300">
                         <img 
@@ -163,253 +168,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Five Clear Service Pillars */}
-      <section id="core-pillars-section" className="w-full py-12 sm:py-16 md:py-24 border-b border-slate-200/80 relative overflow-hidden bg-gradient-to-b from-white via-slate-50/40 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <MorphBlock className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14">
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-[#0046AF] text-xs font-bold uppercase tracking-wider mb-3">
-                <span className="w-2 h-2 rounded-full bg-[#0046AF]" />
-                Five Clear Service Pillars
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
-                Organized into five business divisions.<br />
-                <span className="text-slate-500">One coherent Nexus ecosystem.</span>
-              </h2>
-              <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
-                Instead of presenting a large collection of individual services immediately, Nexus organizes your operations into five specialized business divisions engineered to scale together seamlessly.
-              </p>
-            </div>
-            <div className="flex flex-wrap items-center gap-3 shrink-0">
-              <Link to="/services">
-                <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold transition-all shadow-sm group cursor-pointer">
-                  <span>Explore full service matrix</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </Link>
-            </div>
-          </MorphBlock>
-
-          {/* Five Business Divisions Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-            {[
-              { 
-                number: "01",
-                divisionName: "IT Services",
-                subtitle: "Reliable Infrastructure & Technical Support",
-                icon: Server, 
-                colorAccent: "text-[#0046AF]",
-                badgeColor: "bg-blue-50 text-[#0046AF] border-blue-200/80",
-                iconBg: "bg-blue-50 text-[#0046AF] group-hover:bg-[#0046AF] group-hover:text-white",
-                image: "/it services.png",
-                fallbackImage: "/it-services.png",
-                link: "/solutions/it-services",
-                cardId: "pillar-card-01-it-services",
-                services: [
-                  "Managed IT",
-                  "Hardware & troubleshooting",
-                  "Networks",
-                  "Cloud",
-                  "Cybersecurity",
-                  "IT maintenance",
-                ]
-              },
-              { 
-                number: "02",
-                divisionName: "Software & Web",
-                subtitle: "Digital Products Built Around Your Business",
-                icon: Code, 
-                colorAccent: "text-sky-600",
-                badgeColor: "bg-sky-50 text-sky-700 border-sky-200/80",
-                iconBg: "bg-sky-50 text-sky-600 group-hover:bg-sky-600 group-hover:text-white",
-                image: "/software development.png",
-                fallbackImage: "/software-development.png",
-                link: "/solutions/software-development",
-                cardId: "pillar-card-02-software-web",
-                services: [
-                  "Websites",
-                  "E-commerce",
-                  "Web applications",
-                  "Custom software",
-                  "CRM",
-                  "Business systems",
-                ]
-              },
-              { 
-                number: "03",
-                divisionName: "AI & Automation",
-                subtitle: "Smarter Workflows. Less Manual Work.",
-                icon: Bot, 
-                colorAccent: "text-emerald-600",
-                badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200/80",
-                iconBg: "bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white",
-                image: "/ai automation.png",
-                fallbackImage: "/ai-automation.png",
-                link: "/solutions/ai-automation",
-                cardId: "pillar-card-03-ai-automation",
-                services: [
-                  "AI integration",
-                  "Business automation",
-                  "AI assistants",
-                  "Chatbots",
-                  "Workflow automation",
-                  "Data analysis",
-                ]
-              },
-              { 
-                number: "04",
-                divisionName: "Multimedia & Creative",
-                subtitle: "Creative Media, Visual Communication & Digital Brand Experiences",
-                icon: Palette, 
-                colorAccent: "text-amber-600",
-                badgeColor: "bg-amber-50 text-amber-700 border-amber-200/80",
-                iconBg: "bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white",
-                image: "/creative production.png",
-                fallbackImage: "/creative-production.png",
-                link: "/solutions/creative-services",
-                cardId: "pillar-card-04-multimedia-creative",
-                services: [
-                  "Branding",
-                  "Graphic design",
-                  "Photography",
-                  "Video",
-                  "Social media content",
-                  "Marketing materials",
-                ]
-              },
-              { 
-                number: "05",
-                divisionName: "Business Technology Consulting",
-                subtitle: "Strategic Technology, Digital Transformation & Business Growth",
-                icon: Briefcase, 
-                colorAccent: "text-slate-800",
-                badgeColor: "bg-slate-100 text-slate-800 border-slate-300/80",
-                iconBg: "bg-slate-100 text-slate-700 group-hover:bg-slate-800 group-hover:text-white",
-                image: "/business consulting.png",
-                fallbackImage: "/business-consulting.png",
-                link: "/solutions/consulting",
-                cardId: "pillar-card-05-consulting",
-                services: [
-                  "Technology strategy",
-                  "Digital transformation",
-                  "Process optimization",
-                  "Technology assessment",
-                  "Business systems",
-                  "IT advisory",
-                ]
-              }
-            ].map((pillar, i) => (
-              <MorphBlock 
-                key={pillar.number} 
-                id={pillar.cardId}
-                delay={i * 0.07} 
-                enableHover
-                className="relative overflow-hidden p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-md border border-slate-200/90 hover:border-[#0046AF]/60 shadow-sm hover:shadow-xl hover:shadow-[#0046AF]/10 transition-all duration-300 group flex flex-col justify-between"
-              >
-                {/* Clear fluid background layer with subtle blur */}
-                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-2xl sm:rounded-3xl">
-                  <img
-                    src={pillar.image}
-                    alt={pillar.divisionName}
-                    loading="lazy"
-                    decoding="async"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      if (!target.src.endsWith(pillar.fallbackImage)) {
-                        target.src = pillar.fallbackImage;
-                      }
-                    }}
-                    className="w-full h-full object-cover object-center scale-110 group-hover:scale-115 transition-transform duration-700 ease-out filter blur-[10px] opacity-15 group-hover:opacity-25"
-                  />
-                  <div className="absolute inset-0 bg-white/75 backdrop-blur-xs group-hover:bg-white/65 transition-colors duration-300" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#0046AF]/5 via-transparent to-blue-400/5 pointer-events-none" />
-                </div>
-
-                {/* Card Top & Body */}
-                <div className="relative z-10 flex flex-col h-full">
-                  {/* Division Header: Number + Icon */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`text-xs font-mono font-bold tracking-wider px-2.5 py-1 rounded-md border ${pillar.badgeColor}`}>
-                      {pillar.number}
-                    </span>
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 shadow-2xs border border-slate-200/60 ${pillar.iconBg}`}>
-                      <pillar.icon className="w-5 h-5" />
-                    </div>
-                  </div>
-
-                  {/* Division Title */}
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0046AF] transition-colors leading-snug mb-1.5">
-                    {pillar.number} — {pillar.divisionName}
-                  </h3>
-
-                  {/* Subtitle / Value Proposition */}
-                  <p className="text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed mb-4 min-h-[38px]">
-                    {pillar.subtitle}
-                  </p>
-
-                  <div className="w-full h-px bg-slate-200/80 my-2" />
-
-                  {/* Six Specific Division Services */}
-                  <div className="my-2 flex-1">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5">
-                      Included Services
-                    </div>
-                    <ul className="space-y-1.5">
-                      {pillar.services.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-xs text-slate-700 group-hover:text-slate-900 transition-colors">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#0046AF] shrink-0 mt-0.5" />
-                          <span className="leading-tight font-medium">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Card Footer Link */}
-                  <div className="mt-5 pt-3 border-t border-slate-100/90 flex items-center justify-between text-xs font-bold text-[#0046AF] group-hover:text-blue-700">
-                    <Link to={pillar.link} className="hover:underline flex items-center gap-1.5 w-full justify-between">
-                      <span>Explore Division</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
-              </MorphBlock>
-            ))}
-          </div>
-
-          {/* Unified Ecosystem Advantage Banner */}
-          <MorphBlock delay={0.35} className="mt-8 sm:mt-12 p-5 sm:p-7 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-950 via-[#002868] to-slate-900 text-white relative overflow-hidden shadow-xl border border-blue-900/50">
-            <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-blue-500/15 blur-3xl pointer-events-none" />
-            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-              <div>
-                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-blue-300 font-semibold mb-2">
-                  <Layers className="w-4 h-4 text-blue-400" />
-                  <span>The Coherent Nexus Ecosystem</span>
-                </div>
-                <h4 className="text-lg sm:text-2xl font-bold text-white tracking-tight">
-                  Five Specialized Divisions. Zero Disconnected Vendors.
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mt-1.5 leading-relaxed">
-                  Instead of dealing with five separate agencies pointing fingers, every Nexus division is bound by unified SLAs, synchronized project management, and single-invoice governance backed by our engineering hub in Dubai.
-                </p>
-              </div>
-              <div className="flex flex-wrap items-center gap-3 shrink-0">
-                <Link to="/estimator">
-                  <button className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/20 cursor-pointer backdrop-blur-sm">
-                    Interactive Scope Estimator
-                  </button>
-                </Link>
-                <Link to="/contact">
-                  <button className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-md cursor-pointer flex items-center gap-1.5">
-                    <span>Schedule Consultation</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </MorphBlock>
-        </div>
-      </section>
+      {/* Redesigned NEXUS Services Section: Integrated Technology Partner */}
+      <NexusServicesSection />
 
       {/* Value Proposition Bento Grid with Morphy Physics */}
       <section className="w-full py-12 sm:py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6">

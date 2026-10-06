@@ -10,6 +10,7 @@ export interface TypewriterProps {
   className?: string;
   cursorClassName?: string;
   prefix?: string;
+  showCursor?: boolean;
 }
 
 export function Typewriter({
@@ -20,6 +21,7 @@ export function Typewriter({
   className = '',
   cursorClassName = '',
   prefix = '',
+  showCursor = false,
 }: TypewriterProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
@@ -60,14 +62,16 @@ export function Typewriter({
     <span className={cn("inline-flex items-baseline whitespace-pre-wrap", className)}>
       {prefix && <span className="mr-1">{prefix}</span>}
       <span>{currentText}</span>
-      <motion.span
-        animate={{ opacity: [1, 0, 1] }}
-        transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
-        className={cn(
-          "inline-block w-[3px] h-[0.85em] bg-[#0046AF] ml-1 translate-y-[2px] rounded-full shadow-[0_0_8px_rgba(0,70,175,0.4)]",
-          cursorClassName
-        )}
-      />
+      {showCursor && (
+        <motion.span
+          animate={{ opacity: [1, 0, 1] }}
+          transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
+          className={cn(
+            "inline-block w-[3px] h-[0.85em] bg-[#0046AF] ml-1 translate-y-[2px] rounded-full shadow-[0_0_8px_rgba(0,70,175,0.4)]",
+            cursorClassName
+          )}
+        />
+      )}
     </span>
   );
 }

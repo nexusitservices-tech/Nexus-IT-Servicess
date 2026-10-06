@@ -26,6 +26,7 @@ const SoftwareDevelopmentPage = lazy(() => import('@/pages/marketing/SoftwareDev
 const Industries = lazy(() => import('@/pages/marketing/Industries'));
 const HowWeWork = lazy(() => import('@/pages/marketing/HowWeWork'));
 const Insights = lazy(() => import('@/pages/marketing/Insights'));
+const DesignSystemShowcase = lazy(() => import('@/pages/marketing/DesignSystemShowcase'));
 
 // Lazy-load Auth Layout & Pages
 const AuthLayout = lazy(() => import('@/layouts/AuthLayout'));
@@ -91,6 +92,7 @@ export default function App() {
             <Route path="how-we-work" element={<HowWeWork />} />
             <Route path="insights" element={<Insights />} />
             <Route path="whatsapp-gateway" element={<WhatsAppGateway />} />
+            <Route path="design-system" element={<DesignSystemShowcase />} />
           </Route>
 
           {/* Authentication */}

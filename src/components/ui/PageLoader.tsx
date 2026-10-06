@@ -71,56 +71,35 @@ export function InitialPageLoader({
           transition={{ duration: 0.28, ease: 'easeOut' }}
           className="fixed inset-0 z-[99999] flex items-center justify-center select-none px-6 overflow-hidden cursor-pointer will-change-[opacity,filter]"
         >
-          {/* Blurry White Fluid Canvas */}
+          {/* Pure White Refined Canvas */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Base Translucent Milky Glass */}
-            <div className="absolute inset-0 bg-white/80 backdrop-blur-xl sm:backdrop-blur-2xl" />
+            {/* Solid White Backdrop */}
+            <div className="absolute inset-0 bg-white" />
 
-            {/* Fluid Organic Blob 1: Gentle Blue/Cyan Pearlescent Flow */}
-            <motion.div
-              animate={{
-                x: [-25, 25, -25],
-                y: [-20, 20, -20],
-                scale: [1, 1.08, 1],
-              }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-16 -left-16 w-[360px] sm:w-[480px] h-[360px] sm:h-[480px] rounded-full bg-gradient-to-br from-white via-sky-100/60 to-blue-100/40 blur-2xl sm:blur-3xl opacity-80 will-change-transform"
-            />
-
-            {/* Fluid Organic Blob 2: Soft Indigo/Slate Pearlescent Flow */}
-            <motion.div
-              animate={{
-                x: [25, -25, 25],
-                y: [20, -20, 20],
-                scale: [1.08, 0.96, 1.08],
-              }}
-              transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -bottom-16 -right-16 w-[380px] sm:w-[520px] h-[380px] sm:h-[520px] rounded-full bg-gradient-to-tl from-white via-indigo-50/70 to-slate-100/60 blur-2xl sm:blur-3xl opacity-80 will-change-transform"
-            />
-
-            {/* Fluid Center Radiant Liquid Core */}
-            <motion.div
-              animate={{
-                scale: [0.96, 1.06, 0.96],
-                opacity: [0.8, 0.95, 0.8],
-              }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[420px] h-[320px] sm:h-[420px] rounded-full bg-white/90 blur-xl sm:blur-2xl will-change-transform"
-            />
+            {/* Ultra-subtle depth layer (nearly invisible white-on-white) */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0)_0%,rgba(248,250,252,0.5)_100%)]" />
           </div>
 
-          {/* Clean Borderless Brand Logo with Fade In & Fade Out */}
+          {/* Clean Brand Logo with Refined Premium Fade */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
+            initial={{ opacity: 0, scale: 0.96, y: 4 }}
             animate={{ 
               opacity: 1, 
               scale: 1,
-              transition: { duration: isMobile ? 0.3 : 0.42, ease: [0.16, 1, 0.3, 1] }
+              y: 0,
+              transition: { 
+                duration: isMobile ? 0.4 : 0.55, 
+                ease: [0.22, 1, 0.36, 1] 
+              }
             }}
             exit={{ 
               opacity: 0, 
-              scale: 0.98,
-              transition: { duration: isMobile ? 0.22 : 0.35, ease: 'easeInOut' } 
+              scale: 1.02,
+              y: -4,
+              transition: { 
+                duration: isMobile ? 0.25 : 0.35, 
+                ease: [0.22, 1, 0.36, 1] 
+              } 
             }}
             className="relative z-10 flex items-center justify-center pointer-events-none will-change-[opacity,transform]"
           >
