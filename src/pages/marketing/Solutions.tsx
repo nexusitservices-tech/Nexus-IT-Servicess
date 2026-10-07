@@ -260,7 +260,7 @@ export default function Solutions() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.35, delay: idx * 0.08 }}
-                  className="bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 hover:border-white/40 hover:bg-white/[0.14] shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,70,175,0.14)] transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between group relative overflow-hidden"
+                  className="bg-white rounded-3xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between group relative overflow-hidden"
                 >
                   <div>
                     {/* Visual Media Header with Badge */}
@@ -281,7 +281,7 @@ export default function Solutions() {
 
                       {/* Bottom Floating Price */}
                       <div className="absolute bottom-3 left-3 text-white">
-                        <div className="text-[10px] font-mono uppercase text-blue-200 font-bold">Starting from</div>
+                        <div className="text-[10px] uppercase text-blue-200 font-bold">Starting from</div>
                         <div className="text-base font-bold">{formatPrice(item.startingPriceAed)}</div>
                       </div>
 
@@ -303,10 +303,10 @@ export default function Solutions() {
                     </p>
 
                     {/* Metrics Row */}
-                    <div className="grid grid-cols-3 gap-2.5 p-3 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 mb-6">
+                    <div className="grid grid-cols-3 gap-2.5 p-3 rounded-2xl bg-slate-50 border border-slate-200 mb-6">
                       {item.metrics.map((m, mIdx) => (
                         <div key={mIdx} className="text-center">
-                          <div className="text-[10px] font-mono uppercase text-slate-500">{m.label}</div>
+                          <div className="text-[10px] uppercase text-slate-500">{m.label}</div>
                           <div className="text-xs font-bold text-slate-900 mt-0.5">{m.val}</div>
                         </div>
                       ))}

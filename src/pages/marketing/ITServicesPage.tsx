@@ -582,7 +582,7 @@ export default function ITServicesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {servicesList.map((srv, idx) => (
             <MorphBlock key={idx} delay={idx * 0.05} enableHover>
-              <div className="bg-white/10 backdrop-blur-lg p-6 sm:p-7 rounded-3xl border border-white/20 hover:border-white/40 hover:bg-white/[0.14] shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,70,175,0.14)] transition-all duration-300 flex flex-col justify-between h-full group">
+              <div className="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full group">
                 <div>
                   <div className="flex items-center justify-between mb-5">
                     <div className="w-11 h-11 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100 group-hover:bg-[#0046AF] group-hover:text-white transition-colors">

@@ -571,7 +571,7 @@ export default function SoftwareDevelopmentPage() {
               const Icon = cap.icon;
               return (
                 <MorphBlock key={i} delay={i * 0.06} enableHover className="h-full">
-                  <div className="p-6 sm:p-8 rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 hover:border-white/40 hover:bg-white/[0.14] shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,70,175,0.14)] transition-all duration-300 h-full flex flex-col justify-between group">
+                  <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between group">
                     <div>
                       <div className="flex items-center justify-between mb-6">
                         <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#0046AF] group-hover:bg-[#0046AF] group-hover:text-white transition-all shadow-2xs">
