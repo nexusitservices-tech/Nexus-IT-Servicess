@@ -7,12 +7,7 @@ export default function AuthLayout() {
     <div className="relative min-h-screen bg-[#EEF2F8] text-slate-800 flex flex-col justify-between overflow-x-hidden selection:bg-blue-600 selection:text-white">
       {/* Top Atmospheric Office & City Collaboration Skyline with Light Fade Mask */}
       <div className="absolute top-0 left-0 right-0 h-[480px] overflow-hidden pointer-events-none select-none z-0">
-        <img
-          src="/herobackground.jpg"
-          alt="Modern Enterprise Collaboration Background"
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-[center_30%] opacity-50 filter contrast-110 saturate-125"
-        />
+        <div className="w-full h-full bg-[#E5EDF6]" />
         {/* Soft atmospheric gradient transitions matching the template */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#EEF2F8]/30 via-[#EEF2F8]/75 to-[#EEF2F8]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#EEF2F8]/70 via-transparent to-[#EEF2F8]/70" />

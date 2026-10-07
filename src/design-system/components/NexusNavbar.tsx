@@ -107,16 +107,6 @@ export const NexusNavbar: React.FC<NexusNavbarProps> = ({
 
         {/* Zone 3: 1-2 Primary Actions */}
         <div className="hidden sm:flex items-center gap-3">
-          <a
-            href="/portal"
-            onClick={(e) => handleItemClick('/portal', e)}
-            className={`text-xs font-semibold px-3 py-2 transition-colors cursor-pointer ${
-              dark ? 'text-slate-300 hover:text-white' : 'text-[#66748B] hover:text-[#07142F]'
-            }`}
-          >
-            Client Portal
-          </a>
-
           <NexusButton
             variant="primary"
             size="sm"

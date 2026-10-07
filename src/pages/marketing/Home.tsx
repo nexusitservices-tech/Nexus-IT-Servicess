@@ -91,18 +91,9 @@ export default function Home() {
           <MorphBlock 
             id="tech-partners-section"
             delay={0.35} 
-            className="w-full max-w-full mt-12 sm:mt-16 md:mt-24 overflow-hidden rounded-none border-y border-x-0 border-slate-200/60 bg-transparent py-6 sm:py-10 md:py-12 px-2 sm:px-6 flex flex-col items-center justify-center gap-6 md:gap-8 relative"
+            className="w-full max-w-full mt-8 sm:mt-12 md:mt-16 overflow-hidden rounded-none border-y border-x-0 border-slate-200/60 bg-transparent py-4 sm:py-6 px-2 sm:px-6 flex flex-col items-center justify-center relative"
           >
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
-
-            <div className="text-center px-4 max-w-3xl mx-auto">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight mb-2 sm:mb-2.5">
-                Our Services Are Powered by Industry-Leading Technology Partners
-              </h3>
-              <p className="text-xs sm:text-sm md:text-base text-slate-500 leading-relaxed max-w-2xl mx-auto">
-                Direct cloud interconnections, premier partner SLA agreements, and audited architectures guaranteeing 99.95% uptime, regional data residency, and enterprise compliance across Dubai, Abu Dhabi, and the GCC.
-              </p>
-            </div>
 
             {/* Seamless Infinite Slider with Hardware Acceleration */}
             <div className="marquee-container relative w-full overflow-hidden py-2 select-none">
@@ -155,8 +146,8 @@ export default function Home() {
                 <span>99.95% Infrastructure SLA</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-cyan-500"></span>
-                <span>UAE Data Residency Compliant</span>
+                <span className="w-2 h-2 rounded-full bg-cyan-500 shadow-xs shadow-cyan-500/50"></span>
+                <span className="font-semibold text-slate-700">4-Stage Engagement Model</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-amber-500"></span>
@@ -341,11 +332,11 @@ export default function Home() {
                         <Rocket className="w-6 h-6" />
                       </div>
                       <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-200/80">
-                        Stage 04 & 05
+                        Stage 04
                       </span>
                     </div>
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mb-2 sm:mb-3 group-hover:text-indigo-600 transition-colors">
-                      Launch and Support
+                      Launch and Ongoing Support
                     </h3>
                     <p className="text-slate-600 leading-relaxed text-xs sm:text-sm mb-4">
                       We test, deploy, document and hand over the solution. Where required, we provide training and guidance so your team can operate confidently. From then our partnership continues beyond delivery by providing technical support, maintenance, optimization, automation and scalable solutions as your business evolves.

@@ -64,31 +64,17 @@ const PROCESS_STEPS: ProcessStep[] = [
   },
   {
     number: '04',
-    phase: 'Quality Assurance & Launch',
-    title: 'Audited Deployment & Team Handover',
-    tagline: 'Rigorous security penetration tests, UAE sovereign cloud provisioning, and staff training.',
-    duration: '3 - 5 Days',
+    phase: 'Launch & Continuous Support',
+    title: 'Audited Deployment & Managed SLA',
+    tagline: 'Zero-downtime UAE cloud launch, comprehensive team handover, and proactive 15-min SLA support.',
+    duration: '3 - 5 Days Launch + Ongoing Retainer',
     deliverables: [
-      'Pre-launch stress, security, and mobile responsiveness audit',
-      'DNS cutover with zero downtime and SSL certificates',
-      'Recorded video walkthroughs & comprehensive documentation',
+      'Pre-launch stress, security audit, zero-downtime cutover & SSL certification',
+      'Recorded video walkthroughs, staff training & comprehensive architecture documentation',
+      'Guaranteed 15-minute response SLA, continuous patching, telemetry, and proactive scaling',
     ],
-    clientCommitment: 'Final acceptance sign-off & launch coordination.',
-    details: 'We execute zero-downtime cutovers. We test across all devices, verify UAE payment gateways, validate backup snapshots, and conduct hands-on training sessions with your operational staff.',
-  },
-  {
-    number: '05',
-    phase: 'Support & Evolution',
-    title: 'Continuous Optimization & 15-Min SLA',
-    tagline: 'Long-term partnership with on-demand engineering and emergency local dispatch.',
-    duration: 'Ongoing Retainer',
-    deliverables: [
-      'Guaranteed 15-minute response SLA for critical tickets',
-      'Continuous security patching, uptime telemetry, and database backups',
-      'Monthly roadmap advisory and technology enhancement sessions',
-    ],
-    clientCommitment: 'Monthly alignment on new feature backlogs.',
-    details: 'Technology is never static. Through our Managed SLA retainers, we act as your dedicated internal CTO and DevOps division, ensuring 99.99% uptime, rapid troubleshooting, and proactive scaling.',
+    clientCommitment: 'Final acceptance sign-off & monthly roadmap alignment.',
+    details: 'We execute audited, zero-downtime cutovers, verify UAE payment gateways, validate backup snapshots, and conduct hands-on training sessions. From then on, our partnership continues through Managed SLA retainers, serving as your dedicated DevOps division ensuring 99.99% uptime, rapid troubleshooting, and proactive scaling.',
   },
 ];
 
@@ -144,12 +130,12 @@ export default function HowWeWork() {
         </div>
       </section>
 
-      {/* 5-Step Process Section */}
+      {/* 4-Step Process Section */}
       <section className="py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
-              The 5-Stage Delivery Methodology
+              The 4-Stage Delivery Methodology
             </h2>
             <p className="text-sm sm:text-base text-slate-600">
               Each stage produces tangible deliverables with defined milestones and review gates.
@@ -157,7 +143,7 @@ export default function HowWeWork() {
           </div>
 
           {/* Interactive Steps Horizontal Tabs */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 mb-10">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
             {PROCESS_STEPS.map((step, idx) => {
               const isActive = activeStep === idx;
               return (

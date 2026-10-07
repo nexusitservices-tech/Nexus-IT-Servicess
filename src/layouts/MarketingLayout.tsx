@@ -6,21 +6,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import WhatsAppWidget from '@/components/WhatsAppWidget';
 import { CurrencyProvider, useCurrency } from '@/context/CurrencyContext';
 import PageLoader from '@/components/ui/PageLoader';
-import { isPortalApproved } from '@/lib/portalAuth';
 
 function HeaderNav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesExpanded, setServicesExpanded] = useState(true);
-  const [portalUnlocked, setPortalUnlocked] = useState(isPortalApproved());
   const location = useLocation();
   const { currency, setCurrency } = useCurrency();
-
-  useEffect(() => {
-    const handleAuth = () => setPortalUnlocked(isPortalApproved());
-    window.addEventListener('portal-auth-changed', handleAuth);
-    return () => window.removeEventListener('portal-auth-changed', handleAuth);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 15);
@@ -73,15 +65,16 @@ function HeaderNav() {
         className={cn(
           "sticky top-0 w-full z-40 transition-all duration-300",
           scrolled 
-            ? "bg-white/95 backdrop-blur-xl border-b border-slate-200/90 shadow-xs py-2" 
-            : "bg-white/85 backdrop-blur-md border-b border-slate-200/60 py-3"
+            ? "bg-white/95 backdrop-blur-xl border-b border-slate-200/90 shadow-xs py-2.5" 
+            : "bg-white/85 backdrop-blur-md border-b border-slate-200/60 py-3.5"
         )}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 relative">
+          {/* Left: Brand Identity */}
           <Link to="/" className="flex items-center group shrink-0">
             <div 
               id="header-logo-container"
-              className="flex items-center transition-opacity duration-300 group-hover:opacity-80"
+              className="flex items-center transition-opacity duration-300 group-hover:opacity-85"
             >
               <img 
                 id="header-logo-img"
@@ -92,8 +85,8 @@ function HeaderNav() {
             </div>
           </Link>
           
-          {/* Once UI Segmented Navigation Control */}
-          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 p-1 rounded-full bg-slate-100/70 border border-slate-200/60 backdrop-blur-md">
+          {/* Center: Centered Segmented Navigation Control */}
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 p-1 rounded-full bg-slate-100/80 border border-slate-200/80 backdrop-blur-md shadow-xs absolute left-1/2 -translate-x-1/2">
             {navLinks.map((item) => {
               const isActive = location.pathname === item.path || (item.subLinks && item.subLinks.some(sub => location.pathname === sub.path || location.pathname.startsWith(sub.path)));
               
@@ -159,44 +152,25 @@ function HeaderNav() {
             })}
           </nav>
 
-          {/* MUI SaaS Elevated Action Buttons */}
-          <div className="hidden lg:flex items-center gap-2.5 shrink-0">
-            <Link to={portalUnlocked ? "/app" : "/portal"}>
+          {/* Right Header Actions: Desktop CTA & Mobile Menu Trigger */}
+          <div className="flex items-center gap-3 shrink-0">
+            <Link to="/contact" className="hidden lg:inline-flex">
               <button className="bg-gradient-to-r from-[#0046AF] to-blue-600 hover:from-[#00388C] hover:to-[#0046AF] text-white px-4 xl:px-5 py-2 rounded-full text-xs font-bold shadow-xs hover:shadow-md hover:shadow-[#0046AF]/25 transition-all flex items-center gap-1.5 group cursor-pointer whitespace-nowrap">
-                {portalUnlocked ? (
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
-                ) : (
-                  <Lock className="w-3.5 h-3.5 text-blue-200" />
-                )}
-                <span>{portalUnlocked ? "Client Portal" : "Client Portal"}</span>
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                <span>Get in Touch</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </button>
             </Link>
-          </div>
 
-          {/* Mobile Right Controls: Portal Quick Button + Menu Trigger */}
-          <div className="flex items-center gap-2 lg:hidden">
-            <Link to={portalUnlocked ? "/app" : "/portal"}>
+            {/* Mobile Menu Trigger */}
+            <div className="flex items-center lg:hidden">
               <button 
-                className="px-2.5 py-1.5 rounded-full text-xs font-bold bg-blue-50 hover:bg-blue-100 text-[#0046AF] border border-blue-200/80 flex items-center gap-1.5 transition-colors cursor-pointer"
-                title={portalUnlocked ? "Client Portal (Active)" : "Client Portal (Locked)"}
+                className="text-slate-700 hover:text-slate-900 p-2 rounded-xl hover:bg-slate-100 border border-slate-200/70 transition-colors cursor-pointer"
+                onClick={() => setMobileMenuOpen(true)}
+                aria-label="Open Navigation Menu"
               >
-                {portalUnlocked ? (
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                ) : (
-                  <Lock className="w-3.5 h-3.5 text-[#0046AF]" />
-                )}
-                <span className="text-[11px] font-bold">Portal</span>
+                <Menu className="w-5 h-5" />
               </button>
-            </Link>
-
-            <button 
-              className="text-slate-700 hover:text-slate-900 p-2 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer"
-              onClick={() => setMobileMenuOpen(true)}
-              aria-label="Open Navigation Menu"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
+            </div>
           </div>
         </div>
       </header>
@@ -429,48 +403,6 @@ function HeaderNav() {
                   <span>Contact</span>
                   {location.pathname === '/contact' && <span className="w-1.5 h-1.5 rounded-full bg-[#0046AF]" />}
                 </Link>
-
-                {/* Gated Client Portal Card */}
-                <div className="pt-2">
-                  <Link
-                    to={portalUnlocked ? "/app" : "/portal"}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={cn(
-                      "block p-3 rounded-2xl border transition-all shadow-xs",
-                      portalUnlocked 
-                        ? "bg-emerald-50/70 border-emerald-200 hover:bg-emerald-50" 
-                        : "bg-blue-50/70 border-blue-200/80 hover:bg-blue-50"
-                    )}
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center gap-1.5">
-                        {portalUnlocked ? (
-                          <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                        ) : (
-                          <Lock className="w-4 h-4 text-[#0046AF]" />
-                        )}
-                        <span className="text-xs font-bold text-slate-900">Client Portal</span>
-                      </div>
-                      <span className={cn(
-                        "text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full",
-                        portalUnlocked 
-                          ? "bg-emerald-200 text-emerald-800" 
-                          : "bg-amber-100 text-amber-800"
-                      )}>
-                        {portalUnlocked ? "Active" : "Locked"}
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-slate-600 leading-snug">
-                      {portalUnlocked 
-                        ? "Clearance active. Access enterprise portal & tickets." 
-                        : "Direct access is locked. Fill signup form for admin approval."}
-                    </p>
-                    <div className="mt-1.5 text-[11px] font-bold text-[#0046AF] flex items-center gap-1">
-                      <span>{portalUnlocked ? "Open Portal OS" : "Request Account Access"}</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </div>
-                  </Link>
-                </div>
               </div>
 
               {/* Bottom Actions: Consultation, WhatsApp, Location */}
@@ -670,7 +602,7 @@ export default function MarketingLayout() {
                 </h4>
                 <ul className="space-y-2.5 text-xs text-slate-600">
                   <li><Link to="/about" className="hover:text-blue-600 transition-colors font-medium">About Nexus Tech</Link></li>
-                  <li><Link to="/how-we-work" className="hover:text-blue-600 transition-colors font-medium text-slate-800">How We Work (5 Stages)</Link></li>
+                  <li><Link to="/how-we-work" className="hover:text-blue-600 transition-colors font-medium text-slate-800">How We Work (4 Stages)</Link></li>
                   <li><Link to="/insights" className="hover:text-blue-600 transition-colors font-medium text-slate-800">Insights &amp; Whitepapers</Link></li>
                   <li><Link to="/case-studies" className="hover:text-blue-600 transition-colors">Case Studies &amp; Impact</Link></li>
                   <li><Link to="/estimator" className="hover:text-blue-600 transition-colors">Project Cost Estimator</Link></li>
@@ -679,12 +611,6 @@ export default function MarketingLayout() {
                     <Link to="/whatsapp-gateway" className="text-emerald-700 hover:text-emerald-800 transition-colors flex items-center gap-1 font-medium">
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp API Gateway</span>
-                    </Link>
-                  </li>
-                  <li className="pt-1.5">
-                    <Link to="/portal" className="text-[#0046AF] font-bold hover:underline flex items-center gap-1.5 bg-blue-50/80 px-2.5 py-1.5 rounded-lg border border-blue-200/60">
-                      <Lock className="w-3.5 h-3.5" />
-                      <span>Client Portal Access →</span>
                     </Link>
                   </li>
                 </ul>

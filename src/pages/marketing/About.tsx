@@ -177,15 +177,9 @@ export default function About() {
     },
     {
       step: '4',
-      title: 'Launch & Handover',
-      desc: 'We deliver, document, and train your team so you are set up to succeed and operate smoothly from day one.',
-      tag: 'Enablement & Go-Live'
-    },
-    {
-      step: '5',
-      title: 'Support & Grow',
-      desc: 'Many clients stay with us on an ongoing basis — keeping systems running, adding new capability, and scaling as business grows.',
-      tag: 'Continuous Evolution'
+      title: 'Launch & Ongoing Support',
+      desc: 'We deploy, document, and train your team for a smooth cutover, followed by continuous maintenance, security patching, and proactive scaling.',
+      tag: 'Go-Live & SLA Retainer'
     }
   ];
 
@@ -719,23 +713,23 @@ export default function About() {
         </div>
       </section>
 
-      {/* How We Work: 5-Stage Transparent Process (Page 4 of Company Profile) */}
+      {/* How We Work: 4-Stage Transparent Process (Page 4 of Company Profile) */}
       <section className="w-full py-20 md:py-28 bg-white border-y border-slate-200/80">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           
           <MorphBlock className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#0046AF] text-xs font-semibold mb-3">
-              <span>Predictable Delivery Framework</span>
+              <span>Predictable 4-Stage Framework</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
               How We Work
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
-              A simple, transparent process from first conversation to ongoing support.
+              A simple, transparent 4-stage process from first conversation to ongoing support.
             </p>
           </MorphBlock>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
             {WORK_PROCESS.map((step, idx) => (
               <MorphBlock key={idx} delay={0.08 * idx} enableHover className="h-full">
                 <div className="bg-[#F8FAFC] p-6 rounded-3xl border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-blue-300 transition-all h-full flex flex-col justify-between">

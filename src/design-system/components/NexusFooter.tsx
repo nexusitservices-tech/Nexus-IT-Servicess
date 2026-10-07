@@ -93,7 +93,6 @@ export const NexusFooter: React.FC<NexusFooterProps> = ({
               Client & Legal
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="/portal" className="hover:text-[#1677FF] transition-colors">Enterprise Client Portal</a></li>
               <li><a href="/estimator" className="hover:text-[#1677FF] transition-colors">Project Budget Estimator</a></li>
               <li><a href="/case-studies" className="hover:text-[#1677FF] transition-colors">Case Studies & Impact</a></li>
               <li><a href="/privacy" className="hover:text-[#1677FF] transition-colors">Privacy & Data Governance</a></li>
